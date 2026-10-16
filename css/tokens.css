@@ -1,0 +1,76 @@
+/* Mrs. Pink — generated from tokens.json */
+:root, [data-theme="light"] {
+  --rosa-mrs: #f3a0aa; /* El color de la marca. Grandes bloques, stickers, botones. Texto encima: cacao o granate. Nunca como texto sobre seda. */
+  --granate: #530f0e; /* Rojo terciopelo. Fondos de impacto, portadas, titulares sobre seda o rosa-mrs. */
+  --cacao: #30150e; /* El negro de la marca. Texto principal sobre seda, rosa-mrs y mantequilla; fondos nocturnos. */
+  --seda: #f8e5d7; /* Fondo por defecto, papel crema. Sustituye al blanco puro. */
+  --malva: #6e5058; /* Fondo secundario editorial. Texto encima: seda o rosa-mrs. */
+  --mantequilla: #f4e384; /* Acento alegre para stickers y destacados. Texto encima: cacao. Nunca sobre seda. */
+  --cacao-suave: #7a5a52; /* Texto secundario y pies sobre seda. */
+  --fondo: #ece6e3; /* Superficie de página. */
+  --tinta: var(--cacao); /* Texto sobre fondo. */
+  --tinta-suave: var(--cacao-suave); /* Texto secundario sobre fondo. */
+  --linea: #30150e33; /* Filetes finos y bordes sobre seda. */
+}
+:root {
+  --espacio-2: 8px; /* Entre etiqueta y titular. */
+  --espacio-4: 16px; /* Margen lateral en móvil, padding de stickers. */
+  --espacio-6: 24px; /* Padding de bloques y tarjetas. */
+  --espacio-10: 40px; /* Separación entre secciones de una pieza. */
+  --espacio-16: 64px; /* Márgenes de portada y aire alrededor de titulares grandes. */
+  --radio-0: 0px; /* Por defecto: bloques, fotos y azulejos, cortes rectos y editoriales. */
+  --radio-s: 4px; /* Campos de formulario. */
+  --radio-pildora: 999px; /* Botones, el sello y los stickers. */
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+  --font-script: "Mrs Saint Delafield", cursive;
+  --text-titular-xl: 800 96px/0.86 var(--font-display);
+  --text-titular-l: 800 56px/0.9 var(--font-display);
+  --text-cuerpo: 400 17px/26px var(--font-display);
+  --text-subtitulo: 400 32px/36px var(--font-serif);
+  --text-etiqueta: 400 12px/18px var(--font-mono);
+  --text-firma: 400 64px/1 var(--font-script);
+}
+.titular-xl {
+  font-family: var(--font-display);
+  font-size: 96px;
+  line-height: 0.86;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.titular-l {
+  font-family: var(--font-display);
+  font-size: 56px;
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.cuerpo {
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 26px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.subtitulo {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  line-height: 36px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.etiqueta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+.firma {
+  font-family: var(--font-script);
+  font-size: 64px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: 0;
+}

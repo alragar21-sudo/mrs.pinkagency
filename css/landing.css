@@ -1,0 +1,102 @@
+/* Estilos de la landing El Desayuno */
+:root{--fondo:#F6F5EC;--acento:#EEABC5}
+body{margin:0;background:var(--fondo);color:var(--cacao);-webkit-font-smoothing:antialiased}
+a{color:inherit}a:hover{color:var(--granate)}
+*{box-sizing:border-box}
+.wrap{max-width:1160px;margin:0 auto;padding:0 40px}
+.row{display:flex;flex-wrap:wrap;gap:48px}
+.oscuro{background:var(--granate);color:var(--fondo)}
+.oscuro a:hover{color:var(--acento)}
+.grano{position:relative;isolation:isolate}
+.grano::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.18;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
+.grano > *{position:relative;z-index:1}
+.h-hero{font-size:calc(clamp(40px,5.4vw,78px) * var(--escala-titular));font-weight:400;letter-spacing:-0.04em;line-height:1.05;margin:0}
+.h-sec{font-size:calc(clamp(30px,3.6vw,46px) * var(--escala-titular));font-weight:400;letter-spacing:-0.03em;line-height:1.1;margin:0}
+.serif{font-family:var(--acento-font);font-style:var(--acento-estilo);font-weight:400;letter-spacing:var(--acento-espacio);font-size:var(--acento-tam);line-height:0.8;-webkit-text-stroke:var(--acento-trazo) currentColor}
+.label{font-family:inherit;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;font-size:14px}
+.tag{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--acento);color:var(--cacao);font-family:inherit;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border-radius:999px;font-size:15px;font-weight:500;text-decoration:none;border:0;cursor:pointer;font-family:inherit}
+.btn-acento{background:var(--acento);color:var(--cacao)}.btn-acento:hover{background:var(--fondo);color:var(--cacao)}
+.btn-linea-clara{color:var(--fondo);box-shadow:inset 0 0 0 1px #F6F5EC80}.btn-linea-clara:hover{box-shadow:inset 0 0 0 1px var(--fondo);color:var(--fondo)}
+.btn-oscuro{background:var(--granate);color:var(--fondo)}.btn-oscuro:hover{background:var(--cacao);color:var(--fondo)}
+.btn:focus-visible,.faq-q:focus-visible{outline:2px solid var(--acento);outline-offset:3px}
+.hair{border-top:1px solid #30150E26}
+.hair-claro{border-top:1px solid #F6F5EC33}
+.ph{border-radius:28px;display:flex;align-items:center;justify-content:center;text-align:center;padding:32px}
+.campo{display:flex;flex-direction:column;gap:8px}
+.campo label{font-size:13px;font-weight:500;color:var(--fondo)}
+.campo input,.campo select{font-family:inherit;font-size:16px;padding:14px 16px;border:0;border-radius:12px;background:var(--fondo);color:var(--cacao);min-height:50px}
+.campo input:focus,.campo select:focus{outline:2px solid var(--acento);outline-offset:2px}
+.faq-q{all:unset;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;width:100%;padding:24px 0;font-size:19px;font-weight:500;color:var(--cacao)}
+.sello{width:128px;height:128px;border-radius:999px;background:var(--acento);color:var(--cacao);display:grid;place-items:center;position:relative}
+.sello svg{position:absolute;inset:0}
+.sello text{font-family:inherit;font-weight:700;font-size:10.5px;letter-spacing:.12em;fill:var(--cacao)}
+.marquee{white-space:nowrap;overflow:hidden}
+.carrusel{overflow:hidden;width:100%;cursor:grab;touch-action:pan-y;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.carrusel.arrastrando{cursor:grabbing}
+.carrusel-pista{display:flex;align-items:center;width:max-content;white-space:nowrap;padding:14px 0;user-select:none;-webkit-user-select:none}
+.carrusel-pista span,.carrusel-pista a{font-size:clamp(28px,3.2vw,44px);font-weight:400;letter-spacing:-0.035em;line-height:1.25;color:var(--fondo);text-decoration:none;-webkit-user-drag:none}
+.carrusel-pista a:hover{color:var(--acento)}
+.carrusel-pista i{display:block;flex:none;width:6px;height:6px;border-radius:999px;background:var(--acento);margin:0 40px}
+
+/* Navegación de la landing + menú móvil */
+.landing-nav{display:flex;gap:32px;font-size:14px}
+.landing-nav a{text-decoration:none}
+.nav-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;border:0;background:transparent;color:var(--acento);cursor:pointer;border-radius:10px;-webkit-tap-highlight-color:transparent}
+.solo-m{display:none}
+@media (max-width:760px){
+  .nav-toggle{display:inline-flex}
+  .landing-nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:#3F0B0A;border:1px solid #F6F5EC2E;border-radius:16px;margin-top:8px;padding:6px 16px;display:none;box-shadow:0 22px 44px #1E080766;z-index:40}
+  .landing-nav.open{display:flex}
+  .landing-nav a{padding:15px 2px;font-size:16px;border-top:1px solid #F6F5EC1A}
+  .landing-nav a:first-child{border-top:0}
+  .solo-m{display:block}
+}
+@media (prefers-reduced-motion:reduce){.carrusel-pista{animation:none}}
+@media (max-width:760px){.wrap{padding:0 16px}.row{gap:32px}.hide-m{display:none}.sello{width:96px;height:96px}}
+
+/* La cuenta de El Desayuno (hero de la landing, igual que en la home) */
+.cuenta{position:relative;width:100%;max-width:360px;background:var(--fondo);color:var(--cacao);border-radius:6px;padding:32px 30px 28px;transform:rotate(-3deg);box-shadow:0 30px 60px #1E080766;font-size:15px}
+.cuenta::before,.cuenta::after{content:"";position:absolute;left:0;right:0;height:10px;background:radial-gradient(circle at 6px 0,transparent 5px,var(--fondo) 5.5px) repeat-x;background-size:12px 10px}
+.cuenta::before{top:-9px;transform:rotate(180deg)}
+.cuenta::after{bottom:-9px}
+.cuenta-cab{margin:0;text-align:center;font-size:13px;font-weight:600;color:var(--cacao-suave)}
+.cuenta-titulo{margin:6px 0 22px;text-align:center;font-family:"Cedarville Cursive",cursive;font-size:38px;line-height:1.1;color:var(--granate);-webkit-text-stroke:.008em currentColor;padding-bottom:18px;border-bottom:1px dashed #30150E55}
+.cuenta-linea{display:flex;align-items:baseline;gap:8px;padding:7px 0}
+.cuenta-linea i{flex:1;border-bottom:1px dotted #30150E66;transform:translateY(-4px)}
+.cuenta-linea span:last-child{font-weight:600}
+.cuenta-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;padding-top:16px;border-top:1px dashed #30150E55;font-size:22px;font-weight:600;letter-spacing:-0.02em}
+.cuenta-total span:last-child{color:var(--granate)}
+.cuenta-pie{margin:18px 0 0;text-align:center;font-size:13px;color:var(--cacao-suave)}
+.cuenta-sello{position:absolute;right:-52px;top:-56px;transform:rotate(12deg)}
+
+/* Póster de la marca (sección de Alba) */
+.poster{border-radius:6px;overflow:hidden;transform:rotate(-2deg);box-shadow:0 28px 56px #30150E40}
+.poster svg{display:block;width:100%;height:auto}
+
+@media (max-width:760px){.cuenta{transform:rotate(-2deg)}.cuenta-sello{right:-4px;top:-60px}}
+
+/* Preguntas frecuentes (versión estática con <details>) */
+.faq details{border-bottom:1px solid #30150E26}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;font-size:19px;font-weight:500;color:var(--cacao)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;width:32px;height:32px;border-radius:999px;display:grid;place-items:center;font-size:18px;color:var(--cacao)}
+.faq details[open] summary::after{content:"\2212";background:#EEABC5}
+.faq summary:focus-visible{outline:2px solid var(--granate);outline-offset:3px}
+.faq details p{margin:0 0 24px;max-width:600px;font-size:16px;line-height:1.65;color:var(--cacao-suave)}
+
+/* Calendario de reservas (El Desayuno) */
+.cal-cargando{font-size:15px;line-height:1.6;opacity:.85;margin:4px 0}
+.cal-dia{border-top:1px solid #F6F5EC1F;padding:16px 0}
+.cal-dia:first-child{border-top:0;padding-top:4px}
+.cal-dia h4{margin:0 0 10px;font-size:14px;font-weight:600;color:var(--fondo);text-transform:capitalize;letter-spacing:.01em}
+.cal-slots{display:flex;flex-wrap:wrap;gap:8px}
+.cal-slot{appearance:none;border:0;cursor:pointer;font-family:inherit;font-size:15px;font-variant-numeric:tabular-nums;padding:10px 16px;border-radius:999px;background:#F6F5EC14;color:var(--fondo);box-shadow:inset 0 0 0 1px #EEABC566;transition:background .15s}
+.cal-slot:hover{background:#F6F5EC2B}
+.cal-slot[aria-pressed="true"]{background:var(--acento);color:var(--cacao);box-shadow:none;font-weight:600}
+.cal-slot:focus-visible{outline:2px solid var(--acento);outline-offset:2px}
+.cal-acciones{margin-top:22px}
+.cal-acciones .btn[disabled]{opacity:.45;cursor:not-allowed}
+.cal-volver{background:none;border:0;color:var(--fondo);opacity:.85;cursor:pointer;font-family:inherit;font-size:14px;text-decoration:underline;text-underline-offset:3px;padding:4px}
+.cal-volver:hover{opacity:1}
