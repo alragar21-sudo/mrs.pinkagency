@@ -1,0 +1,46 @@
+# Publica la web en Vercel (producción, mrspinkagency.com) cada vez que
+# llega un cambio a la rama main. Usa el proyecto de Vercel existente, así
+# que conserva el dominio y las variables de entorno (Google, Resend…).
+#
+# Necesita un secreto en GitHub: Settings → Secrets and variables → Actions
+#   VERCEL_TOKEN  → token creado en vercel.com/account/tokens con acceso
+#                   al equipo alba-s-thinks.
+
+name: Publicar en Vercel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-produccion
+  cancel-in-progress: false
+
+env:
+  VERCEL_ORG_ID: team_8Zw9CO07PFeEiqA57JEkfgBQ
+  VERCEL_PROJECT_ID: prj_pD1zOWQdOhOg3QfoMkceD5rmdt8G
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comprobar el token
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::error::Falta el secreto VERCEL_TOKEN en Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Publicar en producción
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npx --yes vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN"

@@ -43,4 +43,4 @@ Los estilos van en parte en línea (`style="…"`) porque vienen de un diseño h
 3. **Datos de ejemplo:** la sección "Lo que vas a ver cada mes" de la home usa datos ficticios y lo dice. Si se usan datos reales de un cliente, pedir permiso y cambiar la nota.
 4. **Proyectos del carrusel** (Umbro, Pablo Gil, Distrito Legal, Fixcora): confirmar que Alba puede mencionarlos.
 5. **SEO:** añadir imagen para compartir (Open Graph) y `sitemap.xml` cuando haya dominio.
-6. **Publicación:** dominio mrspinkagency.com. Para un preview permanente: `vercel login` y `vercel deploy`; producción con `vercel deploy --prod`.
+6. **Publicación:** dominio mrspinkagency.com. El código vive en GitHub (`alragar21-sudo/mrs.pinkagency`). Cada push a `main` publica en producción con GitHub Actions (`.github/workflows/publicar-en-vercel.yml`), que necesita el secreto `VERCEL_TOKEN`. El proyecto de Vercel tiene el Git gestionado por v0, por eso no está enlazado desde Settings → Git. No se suben `.env*` ni `.vercel` (las claves están en las variables de entorno de Vercel).
