@@ -31,7 +31,7 @@ Los estilos van en parte en línea (`style="…"`) porque vienen de un diseño h
 
 - **Landing:** sustituidos los marcadores `[Foto de Alba]` (hero) y `[Retrato de Alba]` por la cuenta de El Desayuno y el póster de marca. Componentes `.cuenta` y `.poster` portados a `css/landing.css`. Carga de fuentes recortada a Plus Jakarta Sans + Cedarville Cursive.
 - **Testimonios:** rellenados con 3 testimonios **ficticios** (Laura Méndez · Flora & Co., Diego Narváez · Casa Oliva, Patricia Alonso · Estudio Brota). ⚠️ Sustituir por reales cuando los haya.
-- **Redes:** enlaces apuntados a `instagram.com/mrspinkagency` y `linkedin.com/company/mrs-pink-agency`. ⚠️ Confirmar/crear esos perfiles.
+- **Redes:** enlaces apuntados a `instagram.com/mrs.pinkagency` (confirmado por Alba) y `linkedin.com/company/mrs-pink-agency`. ⚠️ Confirmar/crear el de LinkedIn.
 - **Legal:** creada `privacidad.html` (base) y enlazada desde pies y casillas de los formularios. ⚠️ Faltan datos legales entre corchetes (nombre/NIF/dirección).
 - **SEO:** añadidos `favicon.svg` y `robots.txt`.
 - **Publicación:** desplegada en Vercel como deployment temporal (preview).
