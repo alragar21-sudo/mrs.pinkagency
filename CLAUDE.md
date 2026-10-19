@@ -23,7 +23,17 @@ Lee `docs/guia-de-marca.md`. Resumen de lo que no se negocia:
 | `el-desayuno.html` | Landing de captación de la llamada gratuita de 15 min |
 | `css/web.css` | Estilos compartidos de las 4 páginas de la web |
 | `css/tokens.css` + `css/landing.css` | Estilos de la landing |
-| `js/main.js` | Envío de formularios (de momento solo muestra la confirmación) |
+| `js/main.js` | Formularios (envían a `/api/lead`), carrusel y menú móvil |
+| `js/reservar.js` | Reserva de El Desayuno (`/api/slots` y `/api/book`) |
+| `en/` | Versión en inglés: `index`, `services`, `about`, `contact`, `breakfast`, `privacy` |
+
+## Idiomas (ES / EN)
+
+- El español es el idioma principal y vive en la raíz. El inglés está en `en/`, con nombres de archivo en inglés (servicios → services, sobre-mi → about, contacto → contact, el-desayuno → breakfast, privacidad → privacy).
+- **Cualquier cambio de texto o diseño se hace en las dos versiones.** Las páginas en inglés usan rutas absolutas (`/en/…`, `/css/…`) porque la portada se sirve en `/en` sin barra final.
+- Selector `ES / EN` en la cabecera (`.idioma`, dentro de `.nav-acciones`) que lleva a la misma página en el otro idioma, más `<link rel="alternate" hreflang>` en cada `<head>`.
+- Los scripts leen `<html lang>` para sus mensajes y mandan `idioma` a la API: `/api/slots?lang=en` y `/api/book` devuelven fechas y errores en inglés, y `/api/lead` marca el aviso con «(EN)».
+- En inglés, los servicios son The Plan, The Heist y The Diamonds, y El Desayuno es The Breakfast. Lema: «Cool heads. Brands on fire.» Mismo tono: de tú (you), frases cortas, sin jerga, inglés británico.
 
 Los estilos van en parte en línea (`style="…"`) porque vienen de un diseño hecho en un lienzo. Si refactorizas a clases, mantén exactamente el mismo aspecto.
 

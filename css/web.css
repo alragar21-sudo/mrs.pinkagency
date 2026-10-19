@@ -191,3 +191,13 @@ a{color:inherit}a:hover{color:var(--granate)}
   .nav-links a[aria-current="page"]{color:var(--granate);text-decoration:none}
   .solo-m{display:block}
 }
+
+/* ---------- Selector de idioma (ES / EN) ---------- */
+.nav-acciones{display:flex;align-items:center;gap:16px}
+.idioma{display:inline-flex;align-items:center;gap:2px;padding:3px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--linea);font-size:13px;font-weight:600;letter-spacing:.03em;line-height:1}
+.idioma a{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:34px;padding:0 10px;border-radius:999px;text-decoration:none;color:var(--cacao-suave)}
+.barra-nav .idioma a:hover{color:var(--granate)}
+.idioma a[aria-current]{background:var(--granate);color:var(--fondo)}
+.barra-nav .idioma a[aria-current]:hover{color:var(--fondo)}
+.idioma a:focus-visible{outline:2px solid var(--granate);outline-offset:2px}
+@media (max-width:860px){.nav-acciones{gap:6px}}

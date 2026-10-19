@@ -45,8 +45,9 @@ async function getAccessToken() {
 }
 
 export default async function handler(req, res) {
+  const en = ((req.query && req.query.lang) || '') === 'en';
   try {
-    if (!process.env.GOOGLE_REFRESH_TOKEN) { res.status(503).json({ error: 'Reservas no configuradas todavía.' }); return; }
+    if (!process.env.GOOGLE_REFRESH_TOKEN) { res.status(503).json({ error: en ? 'Online booking is not set up yet.' : 'Reservas no configuradas todavía.' }); return; }
     const calId = process.env.GOOGLE_CALENDAR_ID || 'primary';
     const now = new Date();
     const earliest = now.getTime() + LEAD_MS;
@@ -80,7 +81,7 @@ export default async function handler(req, res) {
         m += SLOT_MIN; if (m >= 60) { m -= 60; h++; }
       }
       if (slots.length) {
-        const label = new Intl.DateTimeFormat('es-ES', { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long' }).format(new Date(slots[0].iso));
+        const label = new Intl.DateTimeFormat(en ? 'en-GB' : 'es-ES', { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long' }).format(new Date(slots[0].iso));
         days.push({ fecha: y + '-' + String(mo).padStart(2, '0') + '-' + String(d).padStart(2, '0'), label, slots });
       }
     }
@@ -88,6 +89,6 @@ export default async function handler(req, res) {
     res.status(200).json({ tz: TZ, days });
   } catch (e) {
     console.error(e);
-    res.status(500).json({ error: 'No se pudieron cargar los horarios.' });
+    res.status(500).json({ error: en ? 'We couldn’t load the available times.' : 'No se pudieron cargar los horarios.' });
   }
 }

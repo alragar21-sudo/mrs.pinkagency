@@ -12,6 +12,7 @@ const CAMPOS = {
   reto: '¿Qué le preocupa?',
   servicio: '¿Qué necesita?',
   mensaje: 'Mensaje',
+  idioma: 'Idioma de la web',
 };
 
 function esc(s) {
@@ -47,7 +48,8 @@ export default async function handler(req, res) {
   }
 
   const origen = (data.origen || 'web').toString();
-  const titulo = origen === 'reserva' ? 'Nueva reserva de El Desayuno' : 'Nuevo mensaje de contacto';
+  if (data.idioma) data.idioma = data.idioma === 'en' ? 'Inglés (responder en inglés)' : 'Español';
+  const titulo = (origen === 'reserva' ? 'Nueva reserva de El Desayuno' : 'Nuevo mensaje de contacto') + (data.idioma && data.idioma.startsWith('Inglés') ? ' (EN)' : '');
 
   const filas = Object.keys(CAMPOS)
     .filter((k) => data[k])

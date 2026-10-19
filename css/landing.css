@@ -100,3 +100,13 @@ a{color:inherit}a:hover{color:var(--granate)}
 .cal-acciones .btn[disabled]{opacity:.45;cursor:not-allowed}
 .cal-volver{background:none;border:0;color:var(--fondo);opacity:.85;cursor:pointer;font-family:inherit;font-size:14px;text-decoration:underline;text-underline-offset:3px;padding:4px}
 .cal-volver:hover{opacity:1}
+
+/* ---------- Selector de idioma (ES / EN) ---------- */
+.nav-acciones{display:flex;align-items:center;gap:16px}
+.idioma{display:inline-flex;align-items:center;gap:2px;padding:3px;border-radius:999px;box-shadow:inset 0 0 0 1px #F6F5EC40;font-size:13px;font-weight:600;letter-spacing:.03em;line-height:1}
+.idioma a{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:34px;padding:0 10px;border-radius:999px;text-decoration:none;color:var(--fondo);opacity:.8}
+.idioma a:hover{opacity:1;color:var(--acento)}
+.idioma a[aria-current]{background:var(--acento);color:var(--granate);opacity:1}
+.idioma a[aria-current]:hover{color:var(--granate)}
+.idioma a:focus-visible{outline:2px solid var(--acento);outline-offset:2px}
+@media (max-width:760px){.nav-acciones{gap:6px}}

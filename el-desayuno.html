@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/landing.css">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="es" href="https://mrspinkagency.com/el-desayuno">
+<link rel="alternate" hreflang="en" href="https://mrspinkagency.com/en/breakfast">
+<link rel="alternate" hreflang="x-default" href="https://mrspinkagency.com/el-desayuno">
 </head>
 <body>
 <div style="width:100%;background:var(--fondo);font-family:'Plus Jakarta Sans', system-ui, sans-serif;--acento-font:'Cedarville Cursive', cursive;--acento-estilo:normal;--acento-tam:1.25em;--acento-trazo:0.008em;--acento-espacio:0;--escala-titular:1">
@@ -26,8 +29,11 @@
       <a href="#preguntas">Preguntas</a>
       <a href="#reserva" class="solo-m">Reservar</a>
     </nav>
-    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-nav-ed"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-    <a href="#reserva" class="btn btn-acento hide-m" style="min-height:44px;padding:0 20px;font-size:14px">Reservar</a>
+    <div class="nav-acciones">
+      <div class="idioma" role="group" aria-label="Idioma"><a href="el-desayuno.html" lang="es" hreflang="es" title="Español" aria-current="true">ES</a><a href="en/breakfast.html" lang="en" hreflang="en" title="English">EN</a></div>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-nav-ed"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <a href="#reserva" class="btn btn-acento hide-m" style="min-height:44px;padding:0 20px;font-size:14px">Reservar</a>
+    </div>
   </header>
 
   <section id="inicio" class="wrap" style="padding-top:64px;padding-bottom:104px">

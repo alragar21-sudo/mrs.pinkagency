@@ -2,19 +2,25 @@
 // 1) Formularios  2) Carrusel de proyectos (auto + arrastrar)  3) Menú móvil
 
 /* ---------- 1) Formularios ---------- */
-// De momento solo muestran el mensaje de confirmación.
-// TODO: conectar a un servicio real (Formspree, Netlify Forms, Brevo, HubSpot…)
+// Envían a /api/lead, que manda el aviso por email (Resend).
+// Los mensajes salen en el idioma de la página (<html lang="es|en">).
+var IDIOMA = (document.documentElement.lang || 'es').slice(0, 2) === 'en' ? 'en' : 'es';
+var TXT_FORM = {
+  es: { enviando: 'Enviando…', error: 'Ups, no se ha podido enviar. Escríbenos a info@mrspinkagency.com y lo vemos enseguida.' },
+  en: { enviando: 'Sending…', error: 'Oops, that didn’t go through. Email us at info@mrspinkagency.com and we’ll sort it out right away.' },
+}[IDIOMA];
 document.querySelectorAll('[data-form]').forEach(function (form) {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!form.reportValidity()) return;
     var btn = form.querySelector('button[type="submit"],button:not([type])');
     var txt = btn ? btn.textContent : '';
-    if (btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
+    if (btn) { btn.disabled = true; btn.textContent = TXT_FORM.enviando; }
 
     var payload = {};
     new FormData(form).forEach(function (v, k) { payload[k] = v; });
     payload.origen = form.getAttribute('data-form') || 'web';
+    payload.idioma = IDIOMA;
 
     fetch('/api/lead', {
       method: 'POST',
@@ -28,7 +34,7 @@ document.querySelectorAll('[data-form]').forEach(function (form) {
       if (ok) { ok.hidden = false; ok.setAttribute('tabindex', '-1'); ok.focus(); }
     }).catch(function () {
       if (btn) { btn.disabled = false; btn.textContent = txt; }
-      alert('Ups, no se ha podido enviar. Escríbenos a info@mrspinkagency.com y lo vemos enseguida.');
+      alert(TXT_FORM.error);
     });
   });
 });
