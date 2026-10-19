@@ -44,6 +44,7 @@ Los estilos van en parte en línea (`style="…"`) porque vienen de un diseño h
 - **Redes:** enlaces apuntados a `instagram.com/mrs.pinkagency` (confirmado por Alba) y `linkedin.com/company/mrs-pink-agency`. ⚠️ Confirmar/crear el de LinkedIn.
 - **Legal:** creada `privacidad.html` (base) y enlazada desde pies y casillas de los formularios. ⚠️ Faltan datos legales entre corchetes (nombre/NIF/dirección).
 - **SEO:** añadidos `favicon.svg` y `robots.txt`.
+- **Software a medida:** sección con los mockups del CRM (`img/crm/*.webp`) en la home (antes de «Alba») y en servicios (`#software`, con su píldora en el menú de servicios), en ES y EN. Los datos de los mockups son inventados (confirmado por Alba).
 - **Publicación:** desplegada en Vercel como deployment temporal (preview).
 
 ## Pendiente
