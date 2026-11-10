@@ -9,6 +9,8 @@ const CAMPOS = {
   nombre: 'Nombre',
   email: 'Email',
   web: 'Web o Instagram',
+  negocio: '¿Negocio o marca personal?',
+  inversion: 'Inversión en marketing',
   reto: '¿Qué le preocupa?',
   servicio: '¿Qué necesita?',
   mensaje: 'Mensaje',

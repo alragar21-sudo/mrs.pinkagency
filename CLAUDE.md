@@ -25,6 +25,7 @@ Lee `docs/guia-de-marca.md`. Resumen de lo que no se negocia:
 | `css/tokens.css` + `css/landing.css` | Estilos de la landing |
 | `js/main.js` | Formularios (envían a `/api/lead`), carrusel y menú móvil |
 | `js/reservar.js` | Reserva de El Desayuno (`/api/slots` y `/api/book`) |
+| `el-desayuno-prueba.html` | **Prueba** de landing más visual de El Desayuno, con formulario de cualificación por pasos (`js/cualificacion.js`, `css/desayuno-prueba.css`). `noindex` y sin enlazar. Solo en español de momento. |
 | `en/` | Versión en inglés: `index`, `services`, `about`, `contact`, `breakfast`, `privacy` |
 
 ## Idiomas (ES / EN)
