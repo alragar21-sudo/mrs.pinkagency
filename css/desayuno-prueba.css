@@ -160,3 +160,26 @@
   .dp-servicios-sec{padding:72px 0}
   .dp-servicio-nombre{font-size:36px}
 }
+
+/* ---------- Formulario en el hero (derecha) y mockup en «Qué hacemos» ---------- */
+.dp-hero{align-items:center}
+.dp-hero-texto{flex:1 1 480px}
+.dp-hero-form{flex:1 1 440px;min-width:0;scroll-margin-top:24px}
+.dp-hero-form .dp-quiz{background:var(--granate-hondo);box-shadow:inset 0 0 0 1px #EEABC566,0 30px 60px #1E080766}
+.dp-quiz-kicker{margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acento)}
+.dp-quiz-titulo{margin:0;font-size:clamp(22px,2.2vw,26px);font-weight:600;letter-spacing:-0.025em;line-height:1.2}
+.dp-quiz-sub{margin:8px 0 24px;font-size:14px;line-height:1.55;opacity:.85}
+.dp-hero-form .dp-progreso{padding-top:20px;border-top:1px solid #F6F5EC1F}
+.dp-hero-form .dp-pregunta{font-size:clamp(20px,2vw,24px)}
+.solo-movil{display:none}
+.dp-mockup-sec{position:relative;margin:56px 0 0;padding:32px 0 24px}
+.dp-mockup-img{display:block;width:100%;height:auto}
+.dp-mockup-sec .dp-flota-1{left:2%;bottom:0}
+.dp-mockup-sec .dp-flota-2{left:6%;top:8px}
+@media (max-width:760px){
+  .solo-movil{display:inline-flex}
+  .dp-mockup-sec{margin-top:40px;padding:36px 0 40px}
+  .dp-mockup-sec .dp-flota-1{left:0}
+  .dp-mockup-sec .dp-flota-2{left:0;top:0}
+}
+.dp-hero .h-hero{font-size:clamp(38px,4.4vw,62px)}
