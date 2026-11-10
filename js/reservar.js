@@ -15,6 +15,8 @@
   var elegido = null;
 
   var IDIOMA = (document.documentElement.lang || 'es').slice(0, 2) === 'en' ? 'en' : 'es';
+  // Duración de la llamada: 15 min por defecto; la página puede pedir 30 con data-duracion="30"
+  var DURACION = root.getAttribute('data-duracion') === '30' ? '30' : '';
   var MAIL = '<a href="mailto:info@mrspinkagency.com" style="color:var(--acento)">info@mrspinkagency.com</a>';
   var T = {
     es: {
@@ -55,6 +57,7 @@
     datos = {};
     new FormData(form).forEach(function (v, k) { datos[k] = v; });
     datos.idioma = IDIOMA;
+    if (DURACION) datos.duracion = DURACION;
     hide(wrap); show(cal); elegido = null;
     cargarHuecos();
   });
@@ -63,7 +66,7 @@
 
   function cargarHuecos() {
     slotsBox.innerHTML = '<p class="cal-cargando">' + T.cargando + '</p>';
-    fetch('/api/slots?lang=' + IDIOMA)
+    fetch('/api/slots?lang=' + IDIOMA + (DURACION ? '&dur=' + DURACION : ''))
       .then(function (r) {
         if (r.status === 503) { return r.json().then(function () { throw { noConfig: true }; }); }
         if (!r.ok) throw 0;

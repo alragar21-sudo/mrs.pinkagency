@@ -183,3 +183,31 @@
   .dp-mockup-sec .dp-flota-2{left:0;top:0}
 }
 .dp-hero .h-hero{font-size:clamp(38px,4.4vw,62px)}
+
+/* ---------- Formulario en crudo sobre el hero granate ---------- */
+.dp-hero-form .dp-quiz-claro{background:var(--fondo);color:var(--cacao);box-shadow:0 34px 70px #1E080780,0 0 0 6px #EEABC540}
+.dp-quiz-claro .dp-quiz-kicker,.dp-quiz-claro .dp-progreso-txt{color:var(--granate)}
+.dp-quiz-claro .dp-quiz-sub{color:var(--cacao-suave);opacity:1}
+.dp-hero-form .dp-quiz-claro .dp-progreso{border-top-color:#30150E1F}
+.dp-quiz-claro .dp-barra{background:#30150E14}
+.dp-quiz-claro .dp-barra i{background:var(--granate)}
+.dp-quiz-claro .dp-ayuda{color:var(--cacao-suave);opacity:1}
+.dp-quiz-claro .dp-opcion{background:transparent;color:var(--cacao);box-shadow:inset 0 0 0 1px #30150E33}
+.dp-quiz-claro .dp-opcion:hover{background:#EEABC540;box-shadow:inset 0 0 0 1px var(--granate)}
+.dp-quiz-claro .dp-opcion[aria-pressed="true"]{background:var(--granate);color:var(--fondo);box-shadow:none}
+.dp-quiz-claro .dp-letra{background:#EEABC5;color:var(--granate)}
+.dp-quiz-claro .dp-opcion[aria-pressed="true"] .dp-letra{background:var(--acento);color:var(--granate)}
+.dp-quiz-claro .dp-opcion:focus-visible{outline-color:var(--granate)}
+.dp-quiz-claro .dp-atras,.dp-quiz-claro .cal-volver{color:var(--cacao)}
+.dp-quiz-claro .campo label{color:var(--cacao)}
+.dp-quiz-claro .campo input{background:#FBFAF4;box-shadow:inset 0 0 0 1px #30150E33}
+.dp-quiz-claro .campo input:focus{outline-color:var(--granate)}
+.dp-quiz-claro .dp-check input{accent-color:#530F0E}
+.dp-quiz-claro a:not(.btn){color:var(--granate)!important}
+.dp-quiz-claro .cal-dia{border-top-color:#30150E1F}
+.dp-quiz-claro .cal-dia h4{color:var(--cacao)}
+.dp-quiz-claro .cal-slot{background:transparent;color:var(--cacao);box-shadow:inset 0 0 0 1px #30150E40}
+.dp-quiz-claro .cal-slot:hover{background:#EEABC540}
+.dp-quiz-claro .cal-slot[aria-pressed="true"]{background:var(--granate);color:var(--fondo);box-shadow:none}
+.dp-quiz-claro .cal-acciones .btn-acento{background:var(--granate);color:var(--fondo)}
+.dp-quiz-claro .cal-slot:focus-visible{outline-color:var(--granate)}

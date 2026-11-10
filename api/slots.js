@@ -1,5 +1,5 @@
 // Mrs. Pink Agency · huecos disponibles para El Desayuno
-// Reglas: L-J 17:00-18:00 (Europe/Madrid), 15 min, desde 48h y hasta 7 días vista,
+// Reglas: L-J 17:00-18:00 (Europe/Madrid), 15 min (o 30 con ?dur=30), desde 48h y hasta 7 días vista,
 // descontando lo que ya esté ocupado en el calendario.
 
 const TZ = 'Europe/Madrid';
@@ -46,6 +46,7 @@ async function getAccessToken() {
 
 export default async function handler(req, res) {
   const en = ((req.query && req.query.lang) || '') === 'en';
+  const DUR = String((req.query && req.query.dur) || '') === '30' ? 30 : SLOT_MIN;
   try {
     if (!process.env.GOOGLE_REFRESH_TOKEN) { res.status(503).json({ error: en ? 'Online booking is not set up yet.' : 'Reservas no configuradas todavía.' }); return; }
     const calId = process.env.GOOGLE_CALENDAR_ID || 'primary';
@@ -72,13 +73,13 @@ export default async function handler(req, res) {
       const y = +p.year, mo = +p.month, d = +p.day;
       const slots = [];
       let h = START_H, m = START_M;
-      while (h < END_H || (h === END_H && m < END_M)) {
+      while ((h * 60 + m) + DUR <= (END_H * 60 + END_M)) {
         const start = madridToUTC(y, mo, d, h, m);
         const t = start.getTime();
-        const endT = t + SLOT_MIN * 60000;
+        const endT = t + DUR * 60000;
         const libre = t >= earliest && t <= latest && !busy.some((b) => t < b.e && endT > b.s);
         if (libre) slots.push({ iso: start.toISOString(), label: String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') });
-        m += SLOT_MIN; if (m >= 60) { m -= 60; h++; }
+        m += DUR; if (m >= 60) { m -= 60; h++; }
       }
       if (slots.length) {
         const label = new Intl.DateTimeFormat(en ? 'en-GB' : 'es-ES', { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long' }).format(new Date(slots[0].iso));
@@ -86,7 +87,7 @@ export default async function handler(req, res) {
       }
     }
     res.setHeader('Cache-Control', 'no-store');
-    res.status(200).json({ tz: TZ, days });
+    res.status(200).json({ tz: TZ, duracion: DUR, days });
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: en ? 'We couldn’t load the available times.' : 'No se pudieron cargar los horarios.' });

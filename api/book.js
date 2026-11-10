@@ -45,6 +45,7 @@ export default async function handler(req, res) {
   const d = (req.body && typeof req.body === 'object') ? req.body : {};
   const en = d.idioma === 'en';
   const M = en ? MSG.en : MSG.es;
+  const DUR = String(d.duracion || '') === '30' ? 30 : SLOT_MIN;
   try {
     if (!process.env.GOOGLE_REFRESH_TOKEN) { res.status(503).json({ error: M.noConfig }); return; }
     if (d._gotcha) { res.status(200).json({ ok: true }); return; }
@@ -59,7 +60,7 @@ export default async function handler(req, res) {
     const now = Date.now();
     if (start.getTime() < now + 48 * 3600 * 1000 - 60000) { res.status(409).json({ error: M.antelacion }); return; }
     if (start.getTime() > now + 7 * 24 * 3600 * 1000 + 60000) { res.status(409).json({ error: M.ventana }); return; }
-    const end = new Date(start.getTime() + SLOT_MIN * 60000);
+    const end = new Date(start.getTime() + DUR * 60000);
 
     const token = await getAccessToken();
     const calId = process.env.GOOGLE_CALENDAR_ID || 'primary';
@@ -77,7 +78,7 @@ export default async function handler(req, res) {
     }
 
     const body = {
-      summary: (en ? 'The Breakfast · 15 min with ' : 'El Desayuno · 15 min con ') + nombre,
+      summary: (en ? 'The Breakfast · ' + DUR + ' min with ' : 'El Desayuno · ' + DUR + ' min con ') + nombre,
       description: [
         'Reserva desde mrspinkagency.com' + (en ? ' (versión en inglés: la llamada es en inglés)' : ''),
         '',
