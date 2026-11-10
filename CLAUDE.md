@@ -20,13 +20,12 @@ Lee `docs/guia-de-marca.md`. Resumen de lo que no se negocia:
 | `servicios.html` | Servicios (El Plan, El Golpe, Los Diamantes) |
 | `sobre-mi.html` | Sobre mí (ficha del personaje) |
 | `contacto.html` | Contacto (formulario) |
-| `el-desayuno.html` | Landing de captación de la llamada gratuita de 15 min |
+| `el-desayuno.html` | Landing de El Desayuno (llamada gratuita de **30 min**): hero con la promesa de la agencia y formulario de cualificación por pasos en crudo (negocio o marca personal → presupuesto, que es el filtro → preocupación → datos → calendario real de 30 min). `js/cualificacion.js` + `js/reservar.js` (`data-duracion="30"`), `css/desayuno-prueba.css`. Todos los botones de la web llevan aquí. `/el-desayuno-prueba` redirige aquí (`vercel.json`). ⚠️ La versión en inglés (`en/breakfast.html`) sigue siendo la antigua de 15 min. |
 | `css/web.css` | Estilos compartidos de las 4 páginas de la web |
-| `css/tokens.css` + `css/landing.css` | Estilos de la landing |
+| `css/tokens.css` + `css/landing.css` | Estilos de la landing (base) |
 | `js/main.js` | Formularios (envían a `/api/lead`), carrusel y menú móvil |
 | `js/reservar.js` | Reserva de El Desayuno (`/api/slots` y `/api/book`) |
-| `el-desayuno-prueba.html` | **Prueba** de landing más visual de El Desayuno, con formulario de cualificación por pasos (`js/cualificacion.js`, `css/desayuno-prueba.css`). `noindex` y sin enlazar. Solo en español de momento. |
-| `el-desayuno-optin.html` | **Prueba** de El Desayuno para leads más cualificados: mismo diseño que `el-desayuno-prueba.html` con el copy del lienzo de Alba (para quién es / no es, precio desde 1.200 €/mes, voz de Alba en primera persona). Formulario de 12 preguntas con tres salidas (encaja / lo reviso / no encaja) en `js/optin.js` + `css/optin.css`. **Sin conectar**: no envía ni reserva y el calendario es de muestra. `noindex` y sin enlazar. |
+| `el-desayuno-optin.html` | **Prueba** de El Desayuno para leads más cualificados: mismo diseño que `el-desayuno.html` con el copy del lienzo de Alba (para quién es / no es, precio desde 1.200 €/mes, voz de Alba en primera persona). Formulario de 12 preguntas con tres salidas (encaja / lo reviso / no encaja) en `js/optin.js` + `css/optin.css`. **Sin conectar**: no envía ni reserva y el calendario es de muestra. `noindex` y sin enlazar. |
 | `en/` | Versión en inglés: `index`, `services`, `about`, `contact`, `breakfast`, `privacy` |
 
 ## Idiomas (ES / EN)

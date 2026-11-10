@@ -5,5 +5,17 @@
   "installCommand": null,
   "outputDirectory": ".",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/el-desayuno-prueba",
+      "destination": "/el-desayuno",
+      "permanent": true
+    },
+    {
+      "source": "/el-desayuno-prueba.html",
+      "destination": "/el-desayuno",
+      "permanent": true
+    }
+  ]
 }

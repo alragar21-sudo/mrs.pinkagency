@@ -1,5 +1,5 @@
 // Mrs. Pink Agency · El Desayuno, versión para leads cualificados (/el-desayuno-optin)
-// Mismo aspecto que el formulario de /el-desayuno-prueba (clases dp-*).
+// Mismo aspecto que el formulario de /el-desayuno (clases dp-*).
 // 12 pantallas → evaluación → encaja (calendario) · lo reviso yo · no encaja.
 // DE MOMENTO SIN CONECTAR: no envía datos ni reserva; el calendario es de muestra.
 // Para conectarlo: /api/slots?dur=30 + /api/book (encaja) y /api/lead (lo reviso / no encaja).
