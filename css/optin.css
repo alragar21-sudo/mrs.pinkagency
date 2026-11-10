@@ -1,0 +1,43 @@
+/* El Desayuno · versión para leads cualificados (/el-desayuno-optin).
+   Se apoya en tokens.css + landing.css + desayuno-prueba.css y solo añade lo propio (ox-). */
+
+/* Formulario */
+#optin{display:flex;flex-direction:column}
+.dp-quiz-claro .dp-paso{display:flex;flex-direction:column}
+.dp-quiz-claro .dp-paso > .dp-atras{align-self:flex-start}
+.ox-trampa{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.ox-error{margin:0;font-size:13px;font-weight:600;color:var(--granate)}
+.ox-res{display:flex;flex-direction:column;gap:14px;animation:dp-entra .3s ease}
+.ox-res .dp-pregunta{margin:0}
+.ox-p{margin:0;font-size:15px}
+.ox-cuando{margin:0;font-size:18px;font-weight:600}
+.ox-firma{margin:4px 0 0;font-family:"Cedarville Cursive",cursive;font-size:32px;line-height:1;color:var(--granate);-webkit-text-stroke:.012em currentColor}
+.ox-dias{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.ox-dia{appearance:none;cursor:pointer;font-family:inherit;min-height:60px;padding:8px 4px;border:0;border-radius:14px;background:#FBFAF4;color:var(--cacao);box-shadow:0 0 0 1px #30150E26,0 1px 2px #30150E0F;transition:box-shadow .15s,background .15s}
+.ox-dia span{display:block;font-size:12px;font-weight:600}
+.ox-dia strong{display:block;font-size:21px;font-weight:600;letter-spacing:-0.02em}
+.ox-dia:hover{box-shadow:0 0 0 1px var(--granate)}
+.ox-dia[aria-pressed="true"]{background:var(--granate);color:var(--fondo);box-shadow:0 10px 24px -8px #530F0E99}
+.ox-dia:focus-visible{outline:2px solid var(--granate);outline-offset:2px}
+.dp-quiz-claro .btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
+
+/* Para quién es */
+.ox-encaje{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.ox-lado{display:flex;flex-direction:column;gap:18px;padding:32px;border-radius:24px;box-shadow:inset 0 0 0 1px #30150E26}
+.ox-lado-si{background:var(--fondo);box-shadow:0 14px 34px #30150E14,inset 0 0 0 1px #30150E14}
+.ox-icono{display:grid;place-items:center;width:44px;height:44px;border-radius:999px;background:var(--acento);color:var(--granate)}
+.ox-lado-no .ox-icono{background:#30150E14;color:var(--cacao-suave)}
+.ox-icono svg{width:18px;height:18px}
+.ox-lado h3{margin:0;font-size:24px;font-weight:600;letter-spacing:-0.02em}
+.ox-lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:1.5;color:var(--cacao-suave)}
+.ox-lista li{display:flex;gap:10px;align-items:flex-start}
+.ox-lista svg{flex:none;width:18px;height:18px;margin-top:2px;padding:3px;border-radius:999px;background:var(--acento);color:var(--granate)}
+.ox-lado-no .ox-lista svg{background:#30150E14;color:var(--cacao-suave)}
+
+/* Precio */
+.ox-precio-sec{padding:112px 0;background:#EEABC52E}
+.ox-precio{display:flex;flex-direction:column;gap:14px;padding:36px;border-radius:28px;background:var(--fondo);box-shadow:inset 0 1px 0 #FFFDF6,0 2px 4px #30150E0F,0 24px 60px -16px #530F0E33}
+.ox-precio-cifra{margin:0;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ox-precio-cifra strong{font-size:clamp(52px,6vw,68px);font-weight:300;letter-spacing:-0.05em;line-height:1;color:var(--granate)}
+.ox-precio-cifra span{font-size:18px}
+.ox-precio .dp-servicio-lista{margin-top:6px;padding-top:16px;border-top:1px dashed #30150E40}
