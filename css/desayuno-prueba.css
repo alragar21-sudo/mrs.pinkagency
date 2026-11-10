@@ -130,3 +130,33 @@
   .dp-fijo.oculto{transform:translateY(140%);opacity:0;pointer-events:none}
 }
 @media (prefers-reduced-motion:reduce){.dp-paso:not([hidden]),.dp-fuera{animation:none}.dp-barra i{transition:none}}
+
+/* ---------- Promesa (hero con mockup) ---------- */
+.dp-nota{margin:-6px 0 0;font-size:14px;opacity:.8}
+.dp-hero-visual-mockup{padding:48px 0 32px}
+.dp-hero-mockup{display:block;width:118%;max-width:none;height:auto;margin-right:-18%}
+.dp-hero-visual-mockup .dp-flota-1{left:0;bottom:0}
+.dp-hero-visual-mockup .dp-flota-2{left:8%;top:8px}
+
+/* ---------- Qué hacemos ---------- */
+.dp-servicios-sec{padding:112px 0;background:#EEABC52E}
+.dp-servicios{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.dp-servicio{display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:24px;background:var(--fondo);box-shadow:0 14px 34px #30150E14}
+.dp-servicio-tipo{align-self:flex-start;padding:5px 11px;border-radius:999px;background:var(--granate);color:var(--acento);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.dp-servicio-nombre{margin:6px 0 0;font-family:"Cedarville Cursive",cursive;font-weight:400;font-size:40px;line-height:1.1;color:var(--granate);-webkit-text-stroke:.008em currentColor}
+.dp-servicio-promesa{margin:0;font-size:20px;font-weight:600;letter-spacing:-0.02em;line-height:1.25}
+.dp-servicio-lista{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.4;color:var(--cacao-suave)}
+.dp-servicio-lista li{display:flex;gap:10px;align-items:flex-start}
+.dp-servicio-lista svg{flex:none;width:18px;height:18px;margin-top:1px;padding:3px;border-radius:999px;background:var(--acento);color:var(--granate)}
+.dp-servicio-llevas{margin:auto 0 0;padding-top:16px;border-top:1px dashed #30150E40;font-size:15px;line-height:1.5}
+.dp-servicio-llevas strong{color:var(--granate)}
+.dp-servicios-pie{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:40px}
+.dp-enlace{font-weight:600;color:var(--granate);text-underline-offset:4px}
+
+@media (max-width:960px){.dp-hero-mockup{width:100%;margin-right:0}}
+@media (max-width:760px){
+  .dp-hero-visual-mockup{padding:40px 0 36px}
+  .dp-hero-visual-mockup .dp-flota-2{left:4px;top:0}
+  .dp-servicios-sec{padding:72px 0}
+  .dp-servicio-nombre{font-size:36px}
+}
