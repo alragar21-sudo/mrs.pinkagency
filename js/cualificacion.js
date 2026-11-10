@@ -1,5 +1,5 @@
 // Mrs. Pink Agency · formulario de cualificación de El Desayuno (landing de prueba)
-// Pasos: 1) ¿negocio o marca personal?  2) inversión  3) qué le preocupa  4) datos
+// Pasos: 1) ¿negocio o marca personal?  2) presupuesto (filtro)  3) qué le preocupa  4) datos
 // Después, reservar.js se encarga del calendario y la confirmación.
 (function () {
   var root = document.querySelector('.dp-quiz');
@@ -57,7 +57,7 @@
 
   var reiniciar = root.querySelector('[data-reiniciar]');
   if (reiniciar) reiniciar.addEventListener('click', function () {
-    fueraBox.hidden = true; form.hidden = false; ir(1, true);
+    fueraBox.hidden = true; form.hidden = false; ir(actual, true);
   });
 
   // Barra de progreso durante el calendario y la confirmación (los muestra reservar.js).

@@ -86,7 +86,7 @@ export default async function handler(req, res) {
         'Email: ' + email,
         'Web / Instagram: ' + (d.web || '—'),
         ...(d.negocio ? ['Negocio: ' + d.negocio] : []),
-        ...(d.inversion ? ['Inversión en marketing: ' + d.inversion] : []),
+        ...(d.inversion ? ['Presupuesto para marketing: ' + d.inversion] : []),
         'Qué le preocupa: ' + (d.reto || '—'),
       ].join('\n'),
       start: { dateTime: start.toISOString(), timeZone: TZ },
