@@ -198,7 +198,9 @@ function articulo(p, todos) {
     datePublished: p.fecha, dateModified: p.actualizado || p.fecha, inLanguage: 'es-ES', mainEntityOfPage: url,
     author: { '@type': 'Organization', name: 'Mrs. Pink Agency', url: DOMINIO },
     publisher: { '@type': 'Organization', name: 'Mrs. Pink Agency', url: DOMINIO } };
-  const extra = `<meta property="article:published_time" content="${p.fecha}">\n<script type="application/ld+json">${JSON.stringify(ld)}</script>\n`;
+  const og = p.imagen ? (fs.existsSync(path.join(RAIZ, p.imagen.replace(/\.webp$/, '.jpg'))) ? p.imagen.replace(/\.webp$/, '.jpg') : p.imagen) : '';
+  if (og) ld.image = DOMINIO + og;
+  const extra = (og ? `<meta property="og:image" content="${DOMINIO}${og}">\n<meta name="twitter:card" content="summary_large_image">\n` : '') + `<meta property="article:published_time" content="${p.fecha}">\n<script type="application/ld+json">${JSON.stringify(ld)}</script>\n`;
   const mas = todos.filter((o) => o.slug !== p.slug).slice(0, 3);
   return cabecera(`${p.titulo} · Mrs. Pink Agency`, p.descripcion, url, extra) + `
 <div class="oscuro grano">

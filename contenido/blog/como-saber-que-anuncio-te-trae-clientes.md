@@ -4,6 +4,8 @@ descripcion: Si pagas anuncios en Meta o Google y no sabes cuál te trae a quié
 fecha: 2026-11-17
 categoria: Publicidad
 mano: clientes
+imagen: /img/blog/como-saber-que-anuncio-te-trae-clientes.webp
+imagen_alt: Un ticket arrugado, una taza de café y notas rosas con flechas sobre un mantel granate
 ---
 Pagas anuncios cada mes. Te llegan contactos. Alguno compra. Pero si alguien te pregunta qué anuncio te trajo a ese cliente, la respuesta honesta es «ni idea».
 
