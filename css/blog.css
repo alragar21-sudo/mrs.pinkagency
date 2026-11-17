@@ -17,3 +17,11 @@
 .blog-tarjeta:hover{background:#EEABC522;box-shadow:inset 0 0 0 1px var(--granate);color:inherit}
 .blog-tarjeta-titulo{color:var(--granate);font-weight:500}
 @media (max-width:700px){.blog-texto{padding-top:48px;font-size:17px}.blog-cta{padding:32px 24px}.blog-lista{grid-template-columns:1fr}}
+/* Portadas */
+.blog-portada-wrap{margin-top:-40px;position:relative;z-index:2}
+.blog-portada{display:block;width:100%;max-width:1000px;margin:0 auto;aspect-ratio:1200/630;height:auto;border-radius:32px;object-fit:cover;box-shadow:0 30px 60px #1E080733}
+.blog-tarjeta{padding:0 0 32px;overflow:hidden}
+.blog-tarjeta > :not(.blog-tarjeta-img){margin-left:32px;margin-right:32px}
+.blog-tarjeta-img{display:block;width:100%;aspect-ratio:1200/630;height:auto;object-fit:cover;margin-bottom:6px}
+.blog-tarjeta .enlace{align-self:flex-start}
+@media (max-width:700px){.blog-portada-wrap{margin-top:-24px}.blog-portada{border-radius:20px}.blog-tarjeta > :not(.blog-tarjeta-img){margin-left:24px;margin-right:24px}}

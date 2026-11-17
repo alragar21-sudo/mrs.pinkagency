@@ -72,6 +72,50 @@ function tituloConMano(p) {
   return t.slice(0, i) + `<span class="mano" style="color:var(--acento)">${t.slice(i, i + p.mano.length)}</span>` + t.slice(i + p.mano.length);
 }
 
+
+// Portada de cada artículo. Si la cabecera trae «imagen: /img/blog/archivo.webp» se usa esa
+// imagen (p. ej. generada con Midjourney). Si no, se dibuja una portada de marca en SVG:
+// tres composiciones (sello, cuenta, gráfico) que se reparten según el slug.
+function hash(t) { let h = 0; for (const c of t) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; }
+function portadaArte(p, clase) {
+  if (p.imagen) return `<img class="${clase}" src="${esc(p.imagen)}" alt="${esc(p.imagen_alt || p.titulo)}" loading="lazy" width="1200" height="630">`;
+  const h = hash(p.slug), tipo = h % 3, claro = (h >> 3) % 2 === 1;
+  const fondo = claro ? '#F6F5EC' : '#530F0E', tinta = claro ? '#530F0E' : '#F6F5EC', rosa = '#EEABC5';
+  const palabra = esc(p.mano || p.categoria || 'Mrs. Pink');
+  const tam = Math.max(90, Math.min(190, Math.round(1500 / Math.max(palabra.length, 6))));
+  const mano = (x, y, color, anchor = 'middle', t = tam) => `<text x="${x}" y="${y}" text-anchor="${anchor}" font-family="'Cedarville Cursive',cursive" font-size="${t}" fill="${color}" stroke="${color}" stroke-width="1.2">${palabra}</text>`;
+  let arte = '';
+  if (tipo === 0) {
+    // Sello que gira alrededor de la palabra
+    arte = `<defs><path id="c-${p.slug}" d="M600,315 m-215,0 a215,215 0 1,1 430,0 a215,215 0 1,1 -430,0"/></defs>
+      <circle cx="600" cy="315" r="250" fill="${rosa}"/>
+      <circle cx="600" cy="315" r="178" fill="none" stroke="${'#30150E'}" stroke-opacity=".25" stroke-dasharray="2 8"/>
+      <text font-family="'Plus Jakarta Sans',sans-serif" font-weight="700" font-size="22" letter-spacing="7" fill="#30150E"><textPath href="#c-${p.slug}">MRS. PINK AGENCY · ${esc((p.categoria || 'BLOG').toUpperCase())} · CABEZA FRÍA · MARCAS QUE ARDEN ·</textPath></text>
+      ${mano(600, 315 + Math.min(110, Math.round(340 / (palabra.length * 0.42))) * 0.25, '#530F0E', 'middle', Math.min(110, Math.round(340 / (palabra.length * 0.42))))}`;
+  } else if (tipo === 1) {
+    // La cuenta (ticket) inclinada
+    const lineas = [0, 1, 2, 3].map((i) => `<line x1="80" y1="${190 + i * 52}" x2="440" y2="${190 + i * 52}" stroke="#30150E" stroke-opacity=".35" stroke-dasharray="3 7"/><rect x="80" y="${168 + i * 52}" width="${120 + ((h >> i) % 5) * 30}" height="10" rx="5" fill="#30150E" fill-opacity=".55"/><rect x="${380 - ((h >> (i + 2)) % 3) * 20}" y="${168 + i * 52}" width="${60 + ((h >> (i + 2)) % 3) * 20}" height="10" rx="5" fill="#530F0E"/>`).join('');
+    arte = `<g transform="translate(600 60) rotate(-4 260 255)">
+        <rect width="520" height="510" rx="8" fill="#F6F5EC" ${claro ? 'stroke="#30150E" stroke-opacity=".15"' : ''}/>
+        <rect x="80" y="60" width="200" height="12" rx="6" fill="#30150E" fill-opacity=".4"/>
+        ${lineas}
+        <line x1="80" y1="420" x2="440" y2="420" stroke="#30150E" stroke-opacity=".4" stroke-dasharray="8 6"/>
+        <rect x="80" y="445" width="110" height="18" rx="9" fill="#30150E"/><rect x="340" y="445" width="100" height="18" rx="9" fill="#530F0E"/>
+      </g>
+      <circle cx="1110" cy="110" r="70" fill="${rosa}"/>
+      <text x="1110" y="123" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600" font-size="38" fill="#30150E">30′</text>
+      ${mano(80, 360, claro ? '#530F0E' : rosa, 'start', Math.min(130, Math.round(480 / (palabra.length * 0.42))))}`;
+  } else {
+    // Gráfico de barras que sube
+    const barras = [0, 1, 2, 3, 4, 5].map((i) => { const alto = 70 + i * 48 + ((h >> i) % 4) * 14; return `<rect x="${640 + i * 80}" y="${520 - alto}" width="52" height="${alto}" rx="26" fill="${i === 5 ? rosa : tinta}" fill-opacity="${i === 5 ? 1 : 0.18 + i * 0.1}"/>`; }).join('');
+    arte = `<line x1="610" y1="520" x2="1120" y2="520" stroke="${tinta}" stroke-opacity=".3"/>${barras}
+      <path d="M666 430 C 760 400, 840 330, 1106 150" fill="none" stroke="${rosa}" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"/>
+      ${mano(80, 360, claro ? '#530F0E' : rosa, 'start', Math.min(140, Math.round(480 / (palabra.length * 0.42))))}`;
+  }
+  const grano = `<filter id="g-${p.slug}"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.19  0 0 0 0 0.08  0 0 0 0 0.05  0 0 0 .35 0"/></filter>`;
+  return `<svg class="${clase}" viewBox="0 0 1200 630" role="img" aria-label="Portada: ${esc(p.titulo)}" preserveAspectRatio="xMidYMid slice"><defs>${grano}</defs><rect width="1200" height="630" fill="${fondo}"/>${arte}<rect width="1200" height="630" filter="url(#g-${p.slug})" opacity=".5"/></svg>`;
+}
+
 const cabecera = (titulo, descripcion, url, extra = '') => `<!doctype html>
 <html lang="es">
 <head>
@@ -158,12 +202,14 @@ function articulo(p, todos) {
   const mas = todos.filter((o) => o.slug !== p.slug).slice(0, 3);
   return cabecera(`${p.titulo} · Mrs. Pink Agency`, p.descripcion, url, extra) + `
 <div class="oscuro grano">
-  <section class="wrap" style="padding-top:72px;padding-bottom:72px">
+  <section class="wrap" style="padding-top:72px;padding-bottom:112px">
     <p class="kicker" style="color:var(--acento)"><a href="/blog" style="text-decoration:none">Blog</a>${p.categoria ? ' · ' + esc(p.categoria) : ''}</p>
     <h1 class="t-xl" style="max-width:900px;margin-top:20px">${tituloConMano(p)}</h1>
     <p class="small suave" style="margin-top:28px"><time datetime="${p.fecha}">${fechaLarga(p.fecha)}</time> · ${p.minutos} min de lectura</p>
   </section>
 </div>
+
+<div class="wrap blog-portada-wrap">${portadaArte(p, 'blog-portada')}</div>
 
 <article class="wrap blog-texto">
 ${markdown(p.cuerpo)}
@@ -180,6 +226,7 @@ ${mas.length ? `
 function tarjeta(p) {
   return `
     <a class="blog-tarjeta" href="/blog/${p.slug}">
+      ${portadaArte(p, 'blog-tarjeta-img')}
       <span class="small suave">${p.categoria ? esc(p.categoria) + ' · ' : ''}${fechaLarga(p.fecha)}</span>
       <span class="t-s blog-tarjeta-titulo">${esc(p.titulo)}</span>
       <span class="small">${esc(p.descripcion)}</span>
