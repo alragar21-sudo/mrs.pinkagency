@@ -26,6 +26,8 @@ Lee `docs/guia-de-marca.md`. Resumen de lo que no se negocia:
 | `js/main.js` | Formularios (envían a `/api/lead`), carrusel y menú móvil |
 | `js/reservar.js` | Reserva de El Desayuno (`/api/slots` y `/api/book`) |
 | `el-desayuno-optin.html` | **Prueba** de El Desayuno para leads más cualificados: mismo diseño que `el-desayuno.html` con el copy del lienzo de Alba (para quién es / no es, precio desde 1.200 €/mes, voz de Alba en primera persona). Formulario de 12 preguntas con tres salidas (encaja / lo reviso / no encaja) en `js/optin.js` + `css/optin.css`. **Sin conectar**: no envía ni reserva y el calendario es de muestra. `noindex` y sin enlazar. |
+| `blog/` | **Generado, no editar a mano.** Blog en español (`/blog` y `/blog/<slug>`), más `blog/feed.xml` y `sitemap.xml`. Se genera con `node scripts/blog.mjs` desde `contenido/blog/*.md` (cabecera `titulo`, `descripcion`, `fecha`, `categoria`, `mano`, `borrador`). Un artículo con fecha futura no sale hasta ese día (hay que volver a generar). Estilos en `css/blog.css`. `contenido/` y `scripts/` no se publican (`.vercelignore`). |
+| `contenido/CALENDARIO-BLOG.md` | Lista de temas del blog. La tarea programada (lunes, miércoles y viernes, 9:00 hora de Madrid) coge el primero sin marcar, escribe el artículo, lo publica directamente (decidido por Alba) y lo marca. |
 | `en/` | Versión en inglés: `index`, `services`, `about`, `contact`, `breakfast`, `privacy` |
 
 ## Idiomas (ES / EN)
@@ -48,6 +50,7 @@ Los estilos van en parte en línea (`style="…"`) porque vienen de un diseño h
 - **Software a medida:** sección con los mockups del CRM (`img/crm/*.webp`) en la home (antes de «Alba») y en servicios (`#software`, con su píldora en el menú de servicios), en ES y EN. Los datos de los mockups son inventados (confirmado por Alba).
 - **Publicación:** desplegada en Vercel como deployment temporal (preview).
 - **Fuentes propias (nov 2026):** Plus Jakarta Sans y Cedarville Cursive se sirven desde `fonts/` con `css/fuentes.css` (enlazado con ruta absoluta y `preload` en todas las páginas), no desde Google Fonts. Antes, si un navegador bloqueaba Google, la manuscrita caía en la `cursive` del sistema y se veía distinta en cada navegador. No volver a enlazar Google Fonts.
+- **Blog y Search Console (nov 2026):** sección `/blog` solo en español, enlazada en el menú y el pie de las páginas ES de la web (no en las landings). `sitemap.xml` + `robots.txt` apuntando a él. Alba tiene la propiedad de dominio `mrspinkagency.com` en Search Console (no hace falta etiqueta de verificación).
 - **WhatsApp (nov 2026):** botón flotante abajo a la derecha en todas las páginas (ES y EN) con popup que lleva a WhatsApp +34 641 20 70 50 con mensaje ya escrito. Se abre solo una vez por visita a los 12 s. Halo rosa y ondas que laten hasta que se pulsa (se apagan con «reducir movimiento»). Todo en la sección 4 de `js/main.js` (estilos incluidos).
 
 ## Pendiente
@@ -56,5 +59,5 @@ Los estilos van en parte en línea (`style="…"`) porque vienen de un diseño h
 2. **Privacidad:** completar los datos legales de `privacidad.html` y crear aviso legal y cookies (+ banner si se añade analítica).
 3. **Datos de ejemplo:** la sección "Lo que vas a ver cada mes" de la home usa datos ficticios y lo dice. Si se usan datos reales de un cliente, pedir permiso y cambiar la nota.
 4. **Proyectos del carrusel** (Umbro, Pablo Gil, Distrito Legal, Fixcora): confirmar que Alba puede mencionarlos.
-5. **SEO:** añadir imagen para compartir (Open Graph) y `sitemap.xml` cuando haya dominio.
+5. **SEO:** añadir imagen para compartir (Open Graph). El sitemap ya existe.
 6. **Publicación:** dominio mrspinkagency.com. El código vive en GitHub (`alragar21-sudo/mrs.pinkagency`). Cada push a `main` publica en producción con GitHub Actions (`.github/workflows/publicar-en-vercel.yml`), que necesita el secreto `VERCEL_TOKEN`. El proyecto de Vercel tiene el Git gestionado por v0, por eso no está enlazado desde Settings → Git. No se suben `.env*` ni `.vercel` (las claves están en las variables de entorno de Vercel).
