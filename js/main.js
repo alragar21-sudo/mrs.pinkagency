@@ -139,6 +139,13 @@ document.querySelectorAll('.nav-toggle').forEach(function (toggle) {
   css.textContent =
     '.wa{position:fixed;right:20px;bottom:20px;z-index:900;font-family:"Plus Jakarta Sans",system-ui,sans-serif;color:#30150E}' +
     '.wa-btn{width:60px;height:60px;border-radius:999px;border:0;cursor:pointer;background:#530F0E;color:#EEABC5;border:2px solid #EEABC5;display:grid;place-items:center;box-shadow:0 8px 24px rgba(48,21,14,.28);transition:transform .2s}' +
+    '.wa-btn{position:relative;box-shadow:0 8px 24px rgba(48,21,14,.28),0 0 22px 4px rgba(238,171,197,.55)}' +
+    '.wa-btn::before,.wa-btn::after{content:"";position:absolute;inset:-2px;border-radius:999px;border:2px solid #EEABC5;opacity:0;pointer-events:none;animation:wa-onda 2.6s ease-out infinite}' +
+    '.wa-btn::after{animation-delay:1.3s}' +
+    '.wa-btn svg{animation:wa-latido 2.6s ease-in-out infinite}' +
+    '@keyframes wa-onda{0%{transform:scale(1);opacity:.75}100%{transform:scale(1.75);opacity:0}}' +
+    '@keyframes wa-latido{0%,100%{transform:scale(1)}12%{transform:scale(1.14)}24%{transform:scale(1)}}' +
+    '.wa.tocado .wa-btn::before,.wa.tocado .wa-btn::after,.wa.tocado .wa-btn svg{animation:none}' +
     '.wa-btn:hover{transform:scale(1.06)}' +
     '.wa-btn:focus-visible,.wa-cerrar:focus-visible,.wa-ir:focus-visible{outline:2px solid #EEABC5;outline-offset:3px}' +
     '.wa-card{position:absolute;right:0;bottom:76px;width:min(300px,calc(100vw - 40px));background:#F6F5EC;border-radius:24px;padding:22px 22px 20px;box-shadow:0 16px 40px rgba(48,21,14,.25);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s,transform .2s}' +
@@ -150,7 +157,7 @@ document.querySelectorAll('.nav-toggle').forEach(function (toggle) {
     '.wa-cerrar{position:absolute;top:10px;right:12px;width:32px;height:32px;border:0;background:none;cursor:pointer;font-size:22px;line-height:1;color:#30150E;opacity:.6;border-radius:999px}' +
     '.wa-cerrar:hover{opacity:1}' +
     '@media (max-width:600px){.wa{right:16px;bottom:16px}.wa-btn{width:56px;height:56px}.wa-card{bottom:70px}}' +
-    '@media (prefers-reduced-motion:reduce){.wa-btn,.wa-card{transition:none}}';
+    '@media (prefers-reduced-motion:reduce){.wa-btn,.wa-card{transition:none}.wa-btn::before,.wa-btn::after,.wa-btn svg{animation:none}}';
   document.head.appendChild(css);
 
   var wa = document.createElement('div');
@@ -174,7 +181,8 @@ document.querySelectorAll('.nav-toggle').forEach(function (toggle) {
     try { sessionStorage.setItem('wa-visto', '1'); } catch (_) {}
   }
   wa.querySelector('.wa-cerrar').tabIndex = -1;
-  btn.addEventListener('click', function () { pon(!wa.classList.contains('abierto')); });
+  // Las ondas rosas laten hasta que la persona pulsa el botón.
+  btn.addEventListener('click', function () { wa.classList.add('tocado'); pon(!wa.classList.contains('abierto')); });
   wa.querySelector('.wa-cerrar').addEventListener('click', function () { pon(false); btn.focus(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && wa.classList.contains('abierto')) pon(false); });
 
