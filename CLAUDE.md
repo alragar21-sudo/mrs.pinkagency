@@ -47,6 +47,7 @@ Los estilos van en parte en línea (`style="…"`) porque vienen de un diseño h
 - **SEO:** añadidos `favicon.svg` y `robots.txt`.
 - **Software a medida:** sección con los mockups del CRM (`img/crm/*.webp`) en la home (antes de «Alba») y en servicios (`#software`, con su píldora en el menú de servicios), en ES y EN. Los datos de los mockups son inventados (confirmado por Alba).
 - **Publicación:** desplegada en Vercel como deployment temporal (preview).
+- **WhatsApp (nov 2026):** botón flotante abajo a la derecha en todas las páginas (ES y EN) con popup que lleva a WhatsApp +34 641 20 70 50 con mensaje ya escrito. Se abre solo una vez por visita a los 12 s. Todo en la sección 4 de `js/main.js` (estilos incluidos).
 
 ## Pendiente
 
