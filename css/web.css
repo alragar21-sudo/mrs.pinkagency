@@ -139,7 +139,7 @@ a{color:inherit}a:hover{color:var(--granate)}
 /* Carrusel */
 .carrusel{overflow:hidden;width:100%;cursor:grab;touch-action:pan-y;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .carrusel.arrastrando{cursor:grabbing}
-.carrusel-pista{display:flex;align-items:center;width:max-content;white-space:nowrap;padding:14px 0;user-select:none;-webkit-user-select:none}
+.carrusel-pista{display:flex;align-items:center;width:max-content;will-change:transform;white-space:nowrap;padding:14px 0;user-select:none;-webkit-user-select:none}
 .carrusel-pista span,.carrusel-pista a{font-size:clamp(28px,3.2vw,44px);font-weight:400;letter-spacing:-0.035em;line-height:1.25;color:var(--fondo);text-decoration:none;-webkit-user-drag:none}
 .carrusel-pista a:hover{color:var(--acento)}
 .carrusel-pista i{display:block;flex:none;width:6px;height:6px;border-radius:999px;background:var(--acento);margin:0 40px}

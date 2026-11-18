@@ -41,39 +41,40 @@ document.querySelectorAll('[data-form]').forEach(function (form) {
 
 /* ---------- 2) Carrusel: avanza solo y se puede arrastrar ---------- */
 // La pista tiene el contenido duplicado (2 copias); hacemos bucle infinito
-// desplazando scrollLeft y saltando medio ancho. Al pasar el ratón por encima
-// se para y se puede arrastrar para mover los nombres a mano.
+// moviéndola con transform y saltando medio ancho. Usamos una posición con
+// decimales (no scrollLeft): en móvil scrollLeft se redondea y +0,6 px por
+// frame se quedaba en 0, así que no avanzaba. Con ratón se para al pasar por
+// encima; en táctil solo se para mientras arrastras.
 var sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('.carrusel').forEach(function (carrusel) {
   var pista = carrusel.querySelector('.carrusel-pista');
   if (!pista) return;
 
-  var hover = false, arrastrando = false, startX = 0, startScroll = 0, movido = false, capturado = false;
-  var velocidad = 0.6; // px por frame (~36 px/s)
+  var pos = 0, hover = false, arrastrando = false, startX = 0, startPos = 0, movido = false, capturado = false;
+  var velocidad = 36; // px por segundo
+  var antes = 0;
 
   function medio() { return pista.scrollWidth / 2; }
-  function normaliza() {
+  function pinta() {
     var m = medio();
-    if (m <= 0) return;
-    if (carrusel.scrollLeft >= m) carrusel.scrollLeft -= m;
-    else if (carrusel.scrollLeft < 0) carrusel.scrollLeft += m;
+    if (m > 0) { pos = pos % m; if (pos < 0) pos += m; }
+    pista.style.transform = 'translate3d(' + (-pos) + 'px,0,0)';
   }
 
-  function tick() {
-    if (!sinMovimiento && !hover && !arrastrando) {
-      carrusel.scrollLeft += velocidad;
-      normaliza();
-    }
+  function tick(t) {
+    var dt = antes ? Math.min(t - antes, 100) : 0;
+    antes = t;
+    if (!sinMovimiento && !hover && !arrastrando) { pos += velocidad * dt / 1000; pinta(); }
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
 
-  carrusel.addEventListener('pointerenter', function () { hover = true; });
-  carrusel.addEventListener('pointerleave', function () { hover = false; });
+  carrusel.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') hover = true; });
+  carrusel.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hover = false; });
 
   carrusel.addEventListener('pointerdown', function (e) {
     arrastrando = true; movido = false; capturado = false;
-    startX = e.clientX; startScroll = carrusel.scrollLeft;
+    startX = e.clientX; startPos = pos;
     // Aún no capturamos: así un clic limpio sobre un nombre abre su enlace.
   });
   carrusel.addEventListener('pointermove', function (e) {
@@ -87,7 +88,7 @@ document.querySelectorAll('.carrusel').forEach(function (carrusel) {
         carrusel.classList.add('arrastrando');
       }
     }
-    if (movido) { carrusel.scrollLeft = startScroll - dx; normaliza(); }
+    if (movido) { pos = startPos - dx; pinta(); }
   });
   function fin(e) {
     if (!arrastrando) return;
