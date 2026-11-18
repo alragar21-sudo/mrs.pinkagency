@@ -4,6 +4,8 @@ descripcion: Responde al momento, cualifica a cada contacto y agenda citas por t
 fecha: 2026-11-18
 categoria: Inteligencia artificial
 mano: WhatsApp
+imagen: /img/blog/asistente-whatsapp-con-ia.webp
+imagen_alt: Un móvil con una conversación de WhatsApp, una taza de café, una libreta rosa y una campanilla sobre terciopelo granate
 ---
 Son las once de la noche. Te escribe alguien por WhatsApp preguntando precios. Lo ves a la mañana siguiente, contestas a las diez y… nada. Ya ha hablado con otro.
 
