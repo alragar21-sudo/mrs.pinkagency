@@ -124,7 +124,7 @@ const cabecera = (titulo, descripcion, url, extra = '') => `<!doctype html>
 <title>${esc(titulo)}</title>
 <meta name="description" content="${esc(descripcion)}">
 <link rel="canonical" href="${url}">
-<meta property="og:type" content="${extra ? 'article' : 'website'}">
+<meta property="og:type" content="${extra.includes('article:published_time') ? 'article' : 'website'}">
 <meta property="og:title" content="${esc(titulo)}">
 <meta property="og:description" content="${esc(descripcion)}">
 <meta property="og:url" content="${url}">
@@ -200,7 +200,7 @@ function articulo(p, todos) {
     publisher: { '@type': 'Organization', name: 'Mrs. Pink Agency', url: DOMINIO } };
   const og = p.imagen ? (fs.existsSync(path.join(RAIZ, p.imagen.replace(/\.webp$/, '.jpg'))) ? p.imagen.replace(/\.webp$/, '.jpg') : p.imagen) : '';
   if (og) ld.image = DOMINIO + og;
-  const extra = (og ? `<meta property="og:image" content="${DOMINIO}${og}">\n<meta name="twitter:card" content="summary_large_image">\n` : '') + `<meta property="article:published_time" content="${p.fecha}">\n<script type="application/ld+json">${JSON.stringify(ld)}</script>\n`;
+  const extra = `<meta property="og:image" content="${DOMINIO}${og || '/img/og-es.jpg'}">\n<meta name="twitter:card" content="summary_large_image">\n` + `<meta property="article:published_time" content="${p.fecha}">\n<script type="application/ld+json">${JSON.stringify(ld)}</script>\n`;
   const mas = todos.filter((o) => o.slug !== p.slug).slice(0, 3);
   return cabecera(`${p.titulo} · Mrs. Pink Agency`, p.descripcion, url, extra) + `
 <div class="oscuro grano">
@@ -237,7 +237,9 @@ function tarjeta(p) {
 }
 
 function portada(posts) {
-  return cabecera('Blog · Mrs. Pink Agency', 'Estrategia, publicidad e IA para marcas que quieren saber, por fin, qué funciona. Sin jerga y sin humo.', `${DOMINIO}/blog`) + `
+  const ldBlog = { '@context': 'https://schema.org', '@type': 'Blog', name: 'Blog de Mrs. Pink Agency', url: `${DOMINIO}/blog`, inLanguage: 'es-ES', publisher: { '@id': `${DOMINIO}/#agencia` }, blogPost: posts.slice(0, 20).map((p) => ({ '@type': 'BlogPosting', headline: p.titulo, url: `${DOMINIO}/blog/${p.slug}`, datePublished: p.fecha })) };
+  const extraBlog = `<meta property="og:image" content="${DOMINIO}/img/og-es.jpg">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">\n<script type="application/ld+json">${JSON.stringify(ldBlog)}</script>\n`;
+  return cabecera('Blog de marketing digital, publicidad e IA · Mrs. Pink Agency', 'Artículos sobre estrategia, anuncios en Meta y Google, WhatsApp con IA y automatización para marcas que quieren saber, por fin, qué funciona.', `${DOMINIO}/blog`, extraBlog) + `
 <div class="oscuro grano">
   <section class="wrap" style="padding-top:88px;padding-bottom:80px">
     <p class="kicker" style="color:var(--acento)">Blog</p>
