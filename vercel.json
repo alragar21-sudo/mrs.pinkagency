@@ -8,6 +8,17 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.mrspinkagency.com"
+        }
+      ],
+      "destination": "https://mrspinkagency.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/el-desayuno-prueba",
       "destination": "/el-desayuno",
       "permanent": true
