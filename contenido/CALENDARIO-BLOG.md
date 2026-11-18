@@ -3,7 +3,7 @@
 La tarea programada coge el **primer tema sin marcar**, escribe el artículo y lo marca con [x] y la fecha. Se pueden añadir, quitar o reordenar temas cuando se quiera. Si la lista se acaba, se proponen temas nuevos siguiendo las mismas líneas (servicios de la agencia, problemas del cliente con sus palabras).
 
 - [x] Cómo saber qué anuncio te trae clientes (y cuál solo gasta) · 2026-11-17
-- [ ] Qué es un asistente de WhatsApp con IA y cuándo le compensa a un negocio
+- [x] Qué es un asistente de WhatsApp con IA y cuándo le compensa a un negocio · 2026-11-18
 - [ ] Plan de marketing para una pyme: qué tiene que tener (y qué sobra)
 - [ ] Por qué tu landing no convierte: 7 fallos que vemos cada semana
 - [ ] Coste por lead vs. coste por cliente: el número que de verdad importa
