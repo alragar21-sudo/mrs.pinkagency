@@ -4,7 +4,7 @@ La tarea programada coge el **primer tema sin marcar**, escribe el artículo y l
 
 - [x] Cómo saber qué anuncio te trae clientes (y cuál solo gasta) · 2026-11-17
 - [x] Qué es un asistente de WhatsApp con IA y cuándo le compensa a un negocio · 2026-11-18
-- [ ] Plan de marketing para una pyme: qué tiene que tener (y qué sobra)
+- [x] Plan de marketing para una pyme: qué tiene que tener (y qué sobra) · 2026-11-20
 - [ ] Por qué tu landing no convierte: 7 fallos que vemos cada semana
 - [ ] Coste por lead vs. coste por cliente: el número que de verdad importa
 - [ ] Automatizar el seguimiento de clientes sin perder el trato cercano
