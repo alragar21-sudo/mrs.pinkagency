@@ -4,6 +4,8 @@ descripcion: Tienes visitas pero nadie rellena el formulario. Repasamos los siet
 fecha: 2026-11-23
 categoria: Publicidad
 mano: landing
+imagen: /img/blog/por-que-tu-landing-no-convierte.webp
+imagen_alt: Manos con uñas rosas tecleando en un portátil con un gráfico, junto a un café y un móvil
 ---
 Los anuncios funcionan. La gente hace clic. Llega a tu página. Y ahí se acaba todo: nadie rellena el formulario, nadie escribe, nadie reserva.
 

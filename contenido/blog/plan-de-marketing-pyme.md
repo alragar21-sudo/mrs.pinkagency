@@ -4,6 +4,8 @@ descripcion: Un plan de marketing para una pyme no necesita 40 páginas. Te cont
 fecha: 2026-11-20
 categoria: Estrategia
 mano: plan
+imagen: /img/blog/plan-de-marketing-pyme.webp
+imagen_alt: Cuaderno de marca abierto, tarjetas de visita y una tableta sobre un terciopelo granate
 ---
 Muchas pymes tienen un plan de marketing. Pocas lo usan. Suele ser un documento larguísimo que alguien hizo con mucha ilusión, se presentó una vez y se quedó en una carpeta.
 
