@@ -59,5 +59,5 @@ Los estilos van en parte en línea (`style="…"`) porque vienen de un diseño h
 1. **Formularios:** conectar `js/main.js` a un servicio real (Formspree, Netlify Forms, Brevo, HubSpot…). Los campos ya tienen `name` y validación. (Se dejó como marcador a propósito.)
 2. **Privacidad:** completar los datos legales de `privacidad.html` y crear aviso legal y cookies (+ banner si se añade analítica).
 3. **Datos de ejemplo:** la sección "Lo que vas a ver cada mes" de la home usa datos ficticios y lo dice. Si se usan datos reales de un cliente, pedir permiso y cambiar la nota.
-4. **Proyectos del carrusel** (Umbro, Pablo Gil, Distrito Legal, Fixcora): confirmar que Alba puede mencionarlos.
+4. **Proyectos del carrusel** (Umbro, Pablo Gil, Distrito Legal; Fixcora quitado a petición de Alba, nov 2026): confirmar que Alba puede mencionarlos.
 5. **Publicación:** dominio mrspinkagency.com. El código vive en GitHub (`alragar21-sudo/mrs.pinkagency`). Cada push a `main` publica en producción con GitHub Actions (`.github/workflows/publicar-en-vercel.yml`), que necesita el secreto `VERCEL_TOKEN`. El proyecto de Vercel tiene el Git gestionado por v0, por eso no está enlazado desde Settings → Git. No se suben `.env*` ni `.vercel` (las claves están en las variables de entorno de Vercel).
