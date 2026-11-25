@@ -28,5 +28,11 @@
       "destination": "/el-desayuno",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/el-desayuno-opt-paid",
+      "destination": "/el-desayuno.html"
+    }
   ]
 }
