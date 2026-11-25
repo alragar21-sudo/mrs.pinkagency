@@ -29,7 +29,9 @@
       confirmar: 'Confirmar reserva',
       reservando: 'Reservando…',
       errorReserva: 'No se ha podido reservar. Inténtalo de nuevo.',
-      meet: 'Abrir Google Meet',
+      meet: 'Guardar en mi calendario',
+      evento: 'El Desayuno con Mrs. Pink Agency',
+      enlace: 'Enlace de Google Meet: ',
       a: ' · ',
     },
     en: {
@@ -42,13 +44,22 @@
       confirmar: 'Confirm booking',
       reservando: 'Booking…',
       errorReserva: 'We couldn’t make the booking. Please try again.',
-      meet: 'Open Google Meet',
+      meet: 'Save to my calendar',
+      evento: 'The Breakfast with Mrs. Pink Agency',
+      enlace: 'Google Meet link: ',
       a: ' at ',
     },
   }[IDIOMA];
 
   function show(el) { el.hidden = false; }
   function hide(el) { el.hidden = true; }
+  // Enlace para añadir la llamada a Google Calendar (con el Meet en el lugar y la descripción)
+  function enlaceCalendario(iso, meet) {
+    var f = function (d) { return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); };
+    var ini = new Date(iso), fin = new Date(ini.getTime() + (DURACION === '30' ? 30 : 15) * 60000);
+    var q = { action: 'TEMPLATE', text: T.evento, dates: f(ini) + '/' + f(fin), details: meet ? T.enlace + meet : '', location: meet || '' };
+    return 'https://calendar.google.com/calendar/render?' + Object.keys(q).map(function (k) { return k + '=' + encodeURIComponent(q[k]); }).join('&');
+  }
   function escapeAttr(s) { return String(s).replace(/"/g, '&quot;'); }
 
   form.addEventListener('submit', function (e) {
@@ -140,9 +151,7 @@
           return;
         }
         cuandoEl.textContent = res.j.cuando || (elegido.dia + T.a + elegido.hora);
-        if (res.j.meet) {
-          meetEl.innerHTML = '<a href="' + res.j.meet + '" target="_blank" rel="noopener" class="btn btn-acento" style="margin-top:4px">' + T.meet + '</a>';
-        }
+        meetEl.innerHTML = '<a href="' + escapeAttr(enlaceCalendario(elegido.iso, res.j.meet)) + '" target="_blank" rel="noopener" class="btn btn-acento" style="margin-top:4px">' + T.meet + '</a>';
         hide(cal); show(okBox); okBox.setAttribute('tabindex', '-1'); okBox.focus();
       })
       .catch(function () { btn.disabled = false; btn.textContent = txt; alert(T.errorReserva); });

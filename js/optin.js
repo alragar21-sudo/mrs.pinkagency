@@ -137,8 +137,16 @@
       return;
     }
     if (i === 'reservado') {
-      pinta(progreso('Reserva hecha', 100) + '<div class="ox-res"><span class="tag" style="align-self:flex-start">Reserva confirmada</span><p style="margin:0;font-size:34px;letter-spacing:-0.04em;line-height:1.05">Café <span class="serif" style="color:var(--granate)">reservado.</span></p><p class="ox-cuando">' + esc(estado.cuando) + '</p><p class="dp-ayuda ox-p">Te llega la invitación al email con el enlace de Google Meet, y te escribo por WhatsApp para confirmar. Y sí, la propina corre de mi cuenta.</p>' + (estado.meet ? '<div class="dp-acciones"><a href="' + esc(estado.meet) + '" class="btn btn-oscuro" target="_blank" rel="noopener">Abrir Google Meet</a></div>' : '') + firma() + '</div>', enfocar);
+      pinta(progreso('Reserva hecha', 100) + '<div class="ox-res"><span class="tag" style="align-self:flex-start">Reserva confirmada</span><p style="margin:0;font-size:34px;letter-spacing:-0.04em;line-height:1.05">Café <span class="serif" style="color:var(--granate)">reservado.</span></p><p class="ox-cuando">' + esc(estado.cuando) + '</p><p class="dp-ayuda ox-p">Te llega la invitación al email con el enlace de Google Meet, y te escribo por WhatsApp para confirmar. Y sí, la propina corre de mi cuenta.</p>' + '<div class="dp-acciones"><a href="' + esc(enlaceCalendario()) + '" class="btn btn-oscuro" target="_blank" rel="noopener">Guardar en mi calendario</a></div>' + firma() + '</div>', enfocar);
     }
+  }
+
+  // Enlace para añadir la llamada a Google Calendar (con el Meet en el lugar y la descripción)
+  function enlaceCalendario() {
+    var f = function (d) { return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); };
+    var ini = new Date(estado.inicio), fin = new Date(ini.getTime() + 30 * 60000);
+    var q = { action: 'TEMPLATE', text: 'El Desayuno con Mrs. Pink Agency', dates: f(ini) + '/' + f(fin), details: estado.meet ? 'Enlace de Google Meet: ' + estado.meet : '', location: estado.meet || '' };
+    return 'https://calendar.google.com/calendar/render?' + Object.keys(q).map(function (k) { return k + '=' + encodeURIComponent(q[k]); }).join('&');
   }
 
   // ---------- Datos que viajan a la API ----------
@@ -236,6 +244,7 @@
           var t = res.j.cuando || (dia.label + ', ' + slot.label);
           estado.cuando = t.charAt(0).toUpperCase() + t.slice(1);
           estado.meet = res.j.meet || '';
+          estado.inicio = slot.iso;
           estado.i = 'reservado';
           render(true);
         })
