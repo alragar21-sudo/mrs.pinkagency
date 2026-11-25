@@ -87,3 +87,12 @@
   .s-marcas{flex-direction:column;align-items:flex-start;gap:8px}
   .s-marcas .carrusel{width:100%}
 }
+/* Servicios del damero: palabra manuscrita más grande y legible */
+.s-celda h3 .mano{font-size:1.4em;line-height:.9}
+/* Bloque 3 (v2.1): solo las reglas, centradas y en tres columnas */
+.s-bloque-reglas{min-height:0;padding:clamp(88px,13vh,136px) 0}
+.s-bloque-reglas .s-reglas{align-items:center;text-align:center;gap:clamp(36px,6vh,56px)}
+.s-reglas-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3.5vw,48px);text-align:left;width:100%}
+.s-reglas-cols li{grid-template-columns:1fr;gap:10px;align-content:start;padding-top:22px;border-top:1px solid var(--linea-clara)}
+.s-reglas-cols li::before{padding-top:0}
+@media (max-width:860px){.s-reglas-cols{grid-template-columns:1fr;gap:28px}}
