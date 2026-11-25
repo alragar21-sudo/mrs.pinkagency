@@ -1,112 +1,88 @@
-/* Sobre Mrs. Pink: página editorial (rediseño nov 2026). Solo la usan sobre-mi.html y en/about.html. */
+/* Sobre Mrs. Pink, versión 2 (nov 2026): cuatro bloques que caben en un portátil de 13". Solo la usan sobre-mi.html y en/about.html. */
 
-/* Marcador de sección: ✦ + etiqueta pequeña */
-.s-marca{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:14px;letter-spacing:.02em;margin:0 0 64px;text-align:center}
-.s-marca::before{content:"✦";font-size:16px;color:var(--granate);line-height:1}
-.oscuro .s-marca::before{color:var(--acento)}
+.s-bloque-pag{min-height:100svh;display:flex;align-items:center;padding:72px 0;box-sizing:border-box}
+.s-bloque-pag>.s-wrap{width:100%}
+.s-bloque-pag.s-final{min-height:0;padding:clamp(88px,12vh,128px) 0}
+.s-wrap{max-width:1120px;margin:0 auto;padding:0 48px;box-sizing:border-box}
+.s-cols{display:grid;gap:clamp(32px,4.5vw,64px);align-items:center}
+.s-5-7{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.s-7-5{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.s-6-6{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.s-titulo{font-size:clamp(34px,3.6vw,52px);font-weight:400;letter-spacing:-0.035em;line-height:1.08;margin:0}
+.s-texto{font-size:clamp(16px,1.25vw,18px);line-height:1.6;margin:0;max-width:36em}
 
 /* Lista numerada (01) (02) */
-.s-lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:30px;max-width:60ch}
-.s-lista li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;font-size:15px;line-height:1.65}
-.s-lista li::before{content:"(" counter(s, decimal-leading-zero) ")";counter-increment:s;color:var(--cacao-suave);font-size:13px;padding-top:2px;font-variant-numeric:tabular-nums}
-.s-lista{counter-reset:s}
-.s-lista strong{font-weight:600}
+.s-lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(14px,2vh,22px);counter-reset:s}
+.s-lista li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;font-size:clamp(15px,1.1vw,16px);line-height:1.6}
+.s-lista li::before{content:"(" counter(s, decimal-leading-zero) ")";counter-increment:s;color:var(--cacao-suave);font-size:13px;padding-top:3px;font-variant-numeric:tabular-nums}
+.oscuro .s-lista li::before{color:var(--acento)}
+.s-lista b{display:block;font-size:clamp(19px,1.6vw,22px);font-weight:400;letter-spacing:-0.02em;line-height:1.25;margin-bottom:4px}
 
-/* Palabra manuscrita gigante que cruza un bloque (decorativa) */
-.s-firma{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-6deg);font-family:"Cedarville Cursive",cursive;font-size:clamp(84px,12vw,170px);line-height:1;color:var(--acento);white-space:nowrap;pointer-events:none;opacity:.9;z-index:0;-webkit-text-stroke:.006em currentColor}
+/* 1. Presentación */
+.s-retrato{position:relative;margin:0;justify-self:center;width:100%;max-width:calc(70vh * 0.8)}
+.s-retrato img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;padding:8px;background:var(--fondo);box-shadow:0 30px 60px #1E080766;box-sizing:border-box}
+.s-retrato .sello{position:absolute;right:-40px;top:-36px;transform:rotate(8deg);z-index:2}
+.s-intro{display:flex;flex-direction:column;gap:24px}
+.s-intro h1{font-size:clamp(48px,6vw,88px);font-weight:400;letter-spacing:-0.045em;line-height:1;margin:0}
+.s-intro h1 .mano{color:var(--acento)}
+.s-cifras{display:flex;flex-wrap:wrap;gap:12px 32px;margin:0;padding:0;list-style:none}
+.s-cifras li{font-size:15px;opacity:.85}
+.s-cifras strong{display:block;color:var(--acento);font-size:clamp(26px,2.4vw,34px);font-weight:500;letter-spacing:-0.03em;line-height:1.1;opacity:1}
 
-/* 1. Hero */
-.s-hero{padding:56px 0 88px;text-align:center;overflow:hidden}
-.s-hero h1{margin:0;font-weight:400;letter-spacing:-0.05em;line-height:.95;font-size:clamp(64px,10vw,148px)}
-.s-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:40px;margin:28px 0 24px}
-.s-hero-nota{font-size:14px;line-height:1.5;margin:0;max-width:16em;opacity:.85}
-.s-hero-nota.izq{justify-self:end;text-align:right}
-.s-hero-nota.der{justify-self:start;text-align:left}
-.s-retrato{position:relative;width:min(360px,72vw);margin:0}
-.s-retrato img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;padding:9px;background:var(--fondo);box-shadow:0 30px 60px #1E080766}
-.s-retrato .sello{position:absolute;right:-56px;top:-40px;transform:rotate(8deg);z-index:2}
-.s-hero .mano{color:var(--acento)}
+/* 2. Cómo trabajo + damero */
+.s-trabajo-txt{display:flex;flex-direction:column;gap:28px}
+.s-trabajo-txt .mano{color:var(--granate)}
+.s-damero{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,minmax(0,1fr));height:min(600px,74vh);border-radius:18px;overflow:hidden}
+.s-damero img{width:100%;height:100%;object-fit:cover;display:block;min-height:0}
+.s-celda{background:var(--granate);color:var(--fondo);padding:clamp(16px,2vw,26px);display:flex;flex-direction:column;justify-content:center;gap:4px;text-decoration:none;min-height:0;transition:background .2s}
+.s-celda:hover{background:var(--granate-hondo)}
+.s-celda h3{margin:0;font-size:clamp(19px,1.7vw,23px);font-weight:400;letter-spacing:-0.02em;line-height:1.2}
+.s-celda h3 .mano{color:var(--acento)}
+.s-celda .cat{font-size:12.5px;font-weight:600;color:var(--acento);margin:0}
+.s-celda p{margin:4px 0 0;font-size:clamp(13px,1vw,14.5px);line-height:1.45;opacity:.85}
+.s-marcas{display:flex;align-items:center;gap:24px;margin-top:clamp(28px,4vh,44px);padding-top:18px;border-top:1px solid var(--linea)}
+.s-marcas-label{flex:none;font-size:14px;font-weight:600;color:var(--cacao-suave);margin:0}
+.s-marcas .carrusel{flex:1;min-width:0}
+.s-marcas .carrusel-pista{padding:4px 0}
+.s-marcas .carrusel-pista a,.s-marcas .carrusel-pista span{font-size:clamp(18px,1.6vw,22px);color:var(--cacao)}
+.s-marcas .carrusel-pista a:hover{color:var(--granate)}
+.s-marcas .carrusel-pista i{margin:0 22px;background:var(--granate)}
 
-/* 2. Así trabajo */
-.s-trabajo{padding:104px 0 120px}
-.s-trabajo-cuerpo,.s-reglas-cuerpo{isolation:isolate}
-.s-trabajo-cuerpo{position:relative;display:flex;justify-content:center;padding:24px 0}
-.s-trabajo-cuerpo .s-lista,.s-reglas-cuerpo .s-lista{position:relative;z-index:1}
-.s-trabajo .s-firma{top:58%}
+/* 3. Ficha y reglas */
+.s-ficha-col{display:flex;justify-content:center}
+.s-ficha-col .ficha{background:var(--fondo);color:var(--cacao);max-width:400px;width:100%;padding:30px 32px 26px}
+.s-ficha-col .ficha>p:first-child{color:var(--granate)!important}
+.s-ficha-col .ficha dt{color:var(--granate)}
+.s-ficha-col .ficha dt,.s-ficha-col .ficha dd{border-top-color:var(--linea);padding:10px 0}
+.s-ficha-col .ficha .suave{color:var(--cacao-suave);opacity:1}
+.s-reglas{display:flex;flex-direction:column;gap:32px}
+.s-reglas .mano{color:var(--acento)}
+.s-reglas .s-lista span{opacity:.85}
+.s-reglas .s-lista b{opacity:1}
 
-/* 3. Damero de servicios */
-.s-damero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
-.s-damero-texto{padding:88px 56px 88px max(48px,calc((100vw - 1200px)/2 + 48px));display:flex;flex-direction:column;justify-content:center;gap:24px}
-.s-damero-texto h2{color:var(--granate)}
-.s-damero-rejilla{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:minmax(260px,auto)}
-.s-damero-rejilla img{width:100%;height:100%;object-fit:cover;display:block}
-.s-bloque{background:var(--granate);color:var(--fondo);padding:32px 30px;display:flex;flex-direction:column;justify-content:center;gap:10px}
-.s-bloque h3{margin:0;font-size:24px;font-weight:400;letter-spacing:-0.02em;line-height:1.2}
-.s-bloque h3 .mano{color:var(--acento)}
-.s-bloque .cat{font-size:13px;font-weight:600;color:var(--acento);margin:0}
-.s-bloque p{margin:0;font-size:15px;line-height:1.55;opacity:.85}
+/* 4. El color y el cierre */
+.s-nombre{display:flex;flex-direction:column;gap:22px}
+.s-nombre .mano{color:var(--granate)}
+.s-cafe{overflow:hidden;background:var(--granate);color:var(--fondo);border-radius:28px;padding:clamp(32px,3.5vw,48px);display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+.s-cafe h3{margin:0;font-size:clamp(28px,2.8vw,40px);font-weight:400;letter-spacing:-0.03em;line-height:1.1}
+.s-cafe .mano{color:var(--acento)}
+.s-cafe p{margin:0;font-size:16px;line-height:1.6;opacity:.85}
 
-/* 4. Proyectos con palabra gigante */
-.s-proyectos{padding:96px 0 0;overflow:hidden;position:relative}
-.s-proyectos-intro{font-family:"Cedarville Cursive",cursive;color:var(--granate);font-size:30px;line-height:1.1;margin:0;max-width:11em}
-.s-escena{position:relative;height:clamp(420px,52vw,640px);margin-top:12px}
-.s-gigante{position:absolute;left:0;top:50%;transform:translate3d(var(--desliza,0px),-50%,0);font-size:clamp(120px,19vw,260px);font-weight:400;letter-spacing:-0.06em;line-height:1;color:var(--granate);white-space:nowrap;margin:0;will-change:transform}
-.s-foto{position:absolute;margin:0;z-index:2;box-shadow:0 24px 48px #1E080740}
-.s-foto img{display:block;width:100%;height:100%;object-fit:cover}
-.s-foto.f1{width:clamp(150px,20vw,260px);aspect-ratio:4/3;left:8%;top:2%}
-.s-foto.f2{width:clamp(150px,18vw,240px);aspect-ratio:4/5;right:9%;top:4%}
-.s-marcas{padding:40px 0 56px;margin-top:40px}
-.s-equipo{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:760px;margin-left:auto;padding:72px 0 104px}
-.s-equipo p{margin:0;font-size:15px;line-height:1.65;color:var(--cacao-suave)}
-.s-equipo p:first-child{color:var(--cacao)}
-
-/* 5. Ficha */
-.s-ficha{padding:104px 0;display:flex;justify-content:center}
-.s-ficha .ficha{background:var(--fondo);color:var(--cacao);max-width:420px;width:100%}
-.s-ficha .ficha dt{color:var(--granate)}
-.s-ficha .ficha dt,.s-ficha .ficha dd{border-top-color:var(--linea)}
-.s-ficha .ficha>p:first-child{color:var(--granate)!important}
-.s-ficha .ficha .suave{color:var(--cacao-suave);opacity:1}
-
-/* 6. Reglas */
-.s-reglas{padding:104px 0 128px}
-.s-reglas-cuerpo{position:relative;display:flex;justify-content:center;padding:24px 0}
-.s-reglas .s-lista li{grid-template-columns:52px minmax(0,1fr)}
-.s-reglas .s-lista b{display:block;font-size:22px;font-weight:400;letter-spacing:-0.02em;line-height:1.25;margin-bottom:6px;color:var(--cacao)}
-.s-reglas .s-firma{top:62%;left:46%}
-
-/* 7. El nombre */
-.s-nombre{padding:112px 0;text-align:center}
-.s-nombre .wrap{max-width:760px;display:flex;flex-direction:column;align-items:center;gap:24px}
-.s-nombre .lead{margin:0 auto}
-
-/* 8. Cierre sobre foto */
-.s-cierre{position:relative;color:var(--fondo);text-align:center;padding:160px 0 168px;background:var(--granate-hondo) url('/img/sobre/retrato-ancho.webp') center 30%/cover no-repeat}
-.s-cierre::before{content:"";position:absolute;inset:0;background:var(--granate-hondo);opacity:.62}
-.s-cierre .wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:24px}
-.s-cierre .mano{color:var(--acento)}
-.s-cierre .lead{opacity:.85}
-
-@media (max-width:860px){
-  .s-hero{padding:40px 0 72px}
-  .s-hero-grid{grid-template-columns:1fr;gap:20px;justify-items:center}
-  .s-hero-nota.izq,.s-hero-nota.der{justify-self:center;text-align:center}
-  .s-hero-nota.izq{order:-1}
-  .s-retrato .sello{right:-14px;top:-30px}
-  .s-trabajo,.s-reglas{padding:80px 0 96px}
-  .s-firma{font-size:clamp(52px,15vw,90px)}
-  .s-damero{grid-template-columns:1fr}
-  .s-damero-texto{padding:72px 16px}
-  .s-damero-rejilla{grid-template-columns:1fr;grid-auto-rows:auto}
-  .s-damero-rejilla img{aspect-ratio:4/3;height:auto}
-  .s-damero-rejilla>:nth-child(1){order:1}.s-damero-rejilla>:nth-child(2){order:2}.s-damero-rejilla>:nth-child(3){order:4}.s-damero-rejilla>:nth-child(4){order:3}.s-damero-rejilla>:nth-child(5){order:5}.s-damero-rejilla>:nth-child(6){order:6}
-  .s-escena{height:460px}
-  .s-foto.f1{left:4%;top:0}
-  .s-foto.f2{right:4%;top:auto;bottom:0}
-  .s-equipo{grid-template-columns:1fr;gap:16px;padding:56px 0 80px}
-  .s-cierre{padding:120px 0}
+@media (max-height:760px) and (min-width:861px){
+  .s-bloque-pag{padding:48px 0}
+  .s-intro{gap:18px}
+  .s-trabajo-txt{gap:20px}
 }
-@media (prefers-reduced-motion:reduce){.s-gigante{transform:translate3d(0,-50%,0)!important}}
-.s-hero-arriba,.s-hero-abajo,.s-hero-nota,.s-retrato{display:block}
-.s-hero-nota{font-weight:400;letter-spacing:0}
-.s-retrato .sello{display:grid}
+@media (max-width:860px){
+  .s-bloque-pag{min-height:0;padding:64px 0}
+  .s-wrap{padding:0 16px}
+  .s-5-7,.s-7-5,.s-6-6{grid-template-columns:1fr}
+  .s-retrato{max-width:320px}
+  .s-retrato .sello{right:-12px;top:-28px}
+  .s-damero{height:auto;grid-template-rows:none;grid-template-columns:1fr}
+  .s-damero img{aspect-ratio:4/3;height:auto}
+  .s-damero>:nth-child(1){order:1}.s-damero>:nth-child(2){order:2}.s-damero>:nth-child(3){order:4}.s-damero>:nth-child(4){order:3}.s-damero>:nth-child(5){order:5}.s-damero>:nth-child(6){order:6}
+  .s-celda{padding:24px 22px}
+  .s-marcas{flex-direction:column;align-items:flex-start;gap:8px}
+  .s-marcas .carrusel{width:100%}
+}
