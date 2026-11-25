@@ -8,7 +8,7 @@ Lee `docs/guia-de-marca.md`. Resumen de lo que no se negocia:
 
 - **Colores:** fondos solo crema `#F6F5EC` o granate `#530F0E`. Rosa `#EEABC5` solo como acento (botones, palabra manuscrita sobre granate, sello, cifras). Texto en cacao `#30150E`. Nunca negro ni blanco puros.
 - **Tipografía:** Plus Jakarta Sans para todo. Cedarville Cursive solo para una palabra por titular (clase `.mano`) y para los nombres de los servicios.
-- **Sin cara:** no se usan fotos de Alba. La confianza la dan la voz, la firma, las cifras y El Desayuno.
+- **Sin cara:** no se usan fotos de Alba, salvo el avatar de la ficha en Sobre Mrs. Pink (`img/alba.webp`, foto en blanco y negro con grano elegida por Alba, 25 nov 2026). La confianza la dan la voz, la firma, las cifras y El Desayuno.
 - **Tono:** de tú, frases cortas, sin jerga. Guiños a *Reservoir Dogs* (Señor Rosa, propina, golpe, botín), como mucho uno por pieza, y nunca imágenes de películas reales.
 - **Nombre:** siempre "Mrs. Pink Agency" (en diálogos y la ficha, "Mrs. Pink" es el personaje). No se menciona ninguna ciudad.
 
