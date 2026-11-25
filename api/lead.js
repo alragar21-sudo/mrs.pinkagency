@@ -14,6 +14,11 @@ const CAMPOS = {
   reto: '¿Qué le preocupa?',
   servicio: '¿Qué necesita?',
   mensaje: 'Mensaje',
+  telefono: 'Móvil',
+  empresa: 'Empresa',
+  resultado: 'Resultado del formulario',
+  fuente: 'Viene de',
+  respuestas: 'Respuestas',
   idioma: 'Idioma de la web',
 };
 
@@ -51,11 +56,11 @@ export default async function handler(req, res) {
 
   const origen = (data.origen || 'web').toString();
   if (data.idioma) data.idioma = data.idioma === 'en' ? 'Inglés (responder en inglés)' : 'Español';
-  const titulo = (origen === 'reserva' ? 'Nueva reserva de El Desayuno' : 'Nuevo mensaje de contacto') + (data.idioma && data.idioma.startsWith('Inglés') ? ' (EN)' : '');
+  const titulo = (origen === 'reserva' ? 'Nueva reserva de El Desayuno' : origen === 'optin' ? 'Nuevo lead del formulario opt-in' : 'Nuevo mensaje de contacto') + (data.idioma && data.idioma.startsWith('Inglés') ? ' (EN)' : '');
 
   const filas = Object.keys(CAMPOS)
     .filter((k) => data[k])
-    .map((k) => `<tr><td style="padding:6px 16px 6px 0;color:#7A5A52;vertical-align:top">${CAMPOS[k]}</td><td style="padding:6px 0;color:#30150E"><strong>${esc(data[k])}</strong></td></tr>`)
+    .map((k) => `<tr><td style="padding:6px 16px 6px 0;color:#7A5A52;vertical-align:top">${CAMPOS[k]}</td><td style="padding:6px 0;color:#30150E"><strong>${esc(data[k]).replace(/\n/g, '<br>')}</strong></td></tr>`)
     .join('');
 
   const html = `

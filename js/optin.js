@@ -1,8 +1,8 @@
 // Mrs. Pink Agency · El Desayuno, versión para leads cualificados (/el-desayuno-optin)
 // Mismo aspecto que el formulario de /el-desayuno (clases dp-*).
 // 12 pantallas → evaluación → encaja (calendario) · lo reviso yo · no encaja.
-// DE MOMENTO SIN CONECTAR: no envía datos ni reserva; el calendario es de muestra.
-// Para conectarlo: /api/slots?dur=30 + /api/book (encaja) y /api/lead (lo reviso / no encaja).
+// Encaja: calendario real de Google Calendar (/api/slots?dur=30) y reserva con Meet (/api/book).
+// Lo reviso: manda los datos por email (/api/lead). Si las reservas no están configuradas (503), también.
 (function () {
   var root = document.getElementById('optin');
   if (!root) return;
@@ -24,8 +24,8 @@
   ];
   var TOTAL = PANTALLAS.length;
   var LETRAS = 'ABCDEFGH';
-  var HORAS = ['9:30', '11:00', '12:30', '16:00', '17:30']; // muestra; al conectar saldrán del calendario real
-  var estado = { i: 0, a: {}, datos: {}, dias: [], dia: 0, hora: null };
+  var estado = { i: 0, a: {}, datos: {}, dias: null, dia: 0, hora: null, error: '' };
+  var MAIL = '<a href="mailto:info@mrspinkagency.com">info@mrspinkagency.com</a>';
 
   function evaluar(a) {
     var noInvierte = a.inv === '0' || a.inv === '<500';
@@ -61,6 +61,7 @@
     if (estado.i + 1 < TOTAL) { estado.i += 1; render(true); return; }
     estado.i = evaluar(estado.a);
     if (estado.i === 'encaja') prepararCalendario();
+    if (estado.i === 'revisar') enviarLead('Lo reviso yo');
     render(true);
   }
 
@@ -136,48 +137,109 @@
       return;
     }
     if (i === 'reservado') {
-      pinta(progreso('Reserva hecha', 100) + '<div class="ox-res"><span class="tag" style="align-self:flex-start">Reserva confirmada</span><p style="margin:0;font-size:34px;letter-spacing:-0.04em;line-height:1.05">Café <span class="serif" style="color:var(--granate)">reservado.</span></p><p class="ox-cuando">' + esc(estado.cuando) + '</p><p class="dp-ayuda ox-p">Te llega la invitación al email con el enlace de Google Meet, y te escribo por WhatsApp para confirmar. Y sí, la propina corre de mi cuenta.</p>' + firma() + '</div>', enfocar);
+      pinta(progreso('Reserva hecha', 100) + '<div class="ox-res"><span class="tag" style="align-self:flex-start">Reserva confirmada</span><p style="margin:0;font-size:34px;letter-spacing:-0.04em;line-height:1.05">Café <span class="serif" style="color:var(--granate)">reservado.</span></p><p class="ox-cuando">' + esc(estado.cuando) + '</p><p class="dp-ayuda ox-p">Te llega la invitación al email con el enlace de Google Meet, y te escribo por WhatsApp para confirmar. Y sí, la propina corre de mi cuenta.</p>' + (estado.meet ? '<div class="dp-acciones"><a href="' + esc(estado.meet) + '" class="btn btn-oscuro" target="_blank" rel="noopener">Abrir Google Meet</a></div>' : '') + firma() + '</div>', enfocar);
     }
   }
 
-  // ---------- Encaja: calendario (de muestra hasta conectarlo) ----------
+  // ---------- Datos que viajan a la API ----------
+  function respuestas() {
+    return PANTALLAS.filter(function (p) { return p.o; }).map(function (p) {
+      var v = estado.a[p.k], op = p.o.filter(function (o) { return o[0] === v; })[0];
+      return p.p + ' → ' + (op ? op[1] : '—');
+    }).join('\n');
+  }
+  function payload(extra) {
+    var d = estado.datos;
+    return Object.assign({
+      nombre: d.nombre, email: d.email, telefono: d.telefono, empresa: d.empresa,
+      web: [d.web, d.instagram].filter(Boolean).join(' · '), instagram: d.instagram,
+      respuestas: respuestas(), idioma: 'es', duracion: '30', fuente: 'Opt-in (el-desayuno-optin)'
+    }, extra || {});
+  }
+  function enviarLead(resultado) {
+    return fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload({ origen: 'optin', resultado: resultado })) })
+      .catch(function () {});
+  }
+
+  // ---------- Encaja: calendario real (Google Calendar) ----------
   function prepararCalendario() {
-    var dias = [], f = new Date();
-    f.setHours(12, 0, 0, 0);
-    f.setDate(f.getDate() + 2);
-    while (dias.length < 4) {
-      var wd = f.getDay();
-      if (wd >= 1 && wd <= 4) dias.push(new Date(f));
-      f.setDate(f.getDate() + 1);
-    }
-    estado.dias = dias; estado.dia = 0; estado.hora = null;
+    estado.dias = null; estado.dia = 0; estado.hora = null; estado.error = '';
+    fetch('/api/slots?dur=30')
+      .then(function (r) {
+        if (r.status === 503) throw { noConfig: true };
+        if (!r.ok) throw 0;
+        return r.json();
+      })
+      .then(function (d) {
+        estado.dias = d.days || [];
+        if (!estado.dias.length) estado.error = 'Ahora mismo no me quedan huecos libres esta semana. Escríbeme a ' + MAIL + ' y lo cuadramos.';
+        if (estado.i === 'encaja') pintaCalendario();
+      })
+      .catch(function (err) {
+        if (err && err.noConfig) {
+          // Reservas sin configurar: no perdemos el contacto, se lo mandamos a Alba por email.
+          enviarLead('Encaja (reservas sin configurar)');
+          estado.i = 'revisar'; render(true); return;
+        }
+        estado.dias = [];
+        estado.error = 'No he podido cargar mi calendario. Prueba en un momento o escríbeme a ' + MAIL + '.';
+        if (estado.i === 'encaja') pintaCalendario();
+      });
+  }
+
+  function cabeceraCal() {
+    return progreso('Encajamos · elige tu hueco', 100) + '<div class="ox-res"><p class="dp-pregunta">Tenemos mucho de qué hablar. Elige tu hueco.</p><p class="dp-ayuda ox-p" style="margin-top:-10px">Llamadas de 30 minutos por Google Meet, de lunes a jueves (hora de España).</p>';
   }
 
   function pintaCalendario(enfocar) {
-    var corto = new Intl.DateTimeFormat('es-ES', { weekday: 'short' });
-    var largo = new Intl.DateTimeFormat('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+    if (estado.dias === null) {
+      pinta(cabeceraCal() + '<p class="cal-cargando">Cargando mi calendario…</p></div>', enfocar);
+      return;
+    }
+    if (!estado.dias.length) {
+      pinta(cabeceraCal() + '<p class="cal-cargando">' + estado.error + '</p></div>', enfocar);
+      return;
+    }
     var dia = estado.dias[estado.dia];
     var chipsDias = estado.dias.map(function (d, j) {
-      var c = corto.format(d).replace('.', '');
-      return '<button type="button" class="ox-dia" data-d="' + j + '" aria-pressed="' + (j === estado.dia) + '"><span>' + esc(c.charAt(0).toUpperCase() + c.slice(1)) + '</span><strong>' + d.getDate() + '</strong></button>';
+      var f = new Date(d.slots[0].iso);
+      var c = new Intl.DateTimeFormat('es-ES', { weekday: 'short', timeZone: 'Europe/Madrid' }).format(f).replace('.', '');
+      var n = new Intl.DateTimeFormat('es-ES', { day: 'numeric', timeZone: 'Europe/Madrid' }).format(f);
+      return '<button type="button" class="ox-dia" data-d="' + j + '" aria-pressed="' + (j === estado.dia) + '"><span>' + esc(c.charAt(0).toUpperCase() + c.slice(1)) + '</span><strong>' + n + '</strong></button>';
     }).join('');
-    var chipsHoras = HORAS.map(function (h) {
-      return '<button type="button" class="cal-slot" data-h="' + h + '" aria-pressed="' + (estado.hora === h) + '">' + h + '</button>';
+    var chipsHoras = dia.slots.map(function (s, j) {
+      return '<button type="button" class="cal-slot" data-h="' + j + '" aria-pressed="' + (estado.hora === j) + '">' + esc(s.label) + '</button>';
     }).join('');
-    var nombreDia = largo.format(dia).split(',')[0];
-    var texto = estado.hora ? 'Reservar el ' + nombreDia + ' ' + dia.getDate() + ' a las ' + estado.hora : 'Elige día y hora';
-    pinta(progreso('Encajamos · elige tu hueco', 100) + '<div class="ox-res"><p class="dp-pregunta">Tenemos mucho de qué hablar. Elige tu hueco.</p><p class="dp-ayuda ox-p" style="margin-top:-10px">Llamadas de 30 minutos, de lunes a jueves (hora de España).</p>' +
-      '<div class="ox-dias" role="group" aria-label="Día">' + chipsDias + '</div><div class="cal-slots" role="group" aria-label="Hora">' + chipsHoras + '</div>' +
-      '<div class="dp-acciones"><button type="button" class="btn btn-oscuro" data-reservar' + (estado.hora ? '' : ' disabled') + '>' + esc(texto) + '</button></div>' +
-      '<p class="dp-ayuda ox-p" style="font-size:13px;margin:0">Te llega la invitación al email y un WhatsApp mío para confirmar.</p></div>', enfocar);
-    root.querySelectorAll('.ox-dia').forEach(function (b) { b.addEventListener('click', function () { estado.dia = +b.getAttribute('data-d'); estado.hora = null; pintaCalendario(); }); });
-    root.querySelectorAll('.cal-slot').forEach(function (b) { b.addEventListener('click', function () { estado.hora = b.getAttribute('data-h'); pintaCalendario(); }); });
-    root.querySelector('[data-reservar]').addEventListener('click', function () {
-      if (!estado.hora) return;
-      var t = largo.format(dia) + ', ' + estado.hora;
-      estado.cuando = t.charAt(0).toUpperCase() + t.slice(1);
-      estado.i = 'reservado';
-      render(true);
+    var slot = estado.hora === null ? null : dia.slots[estado.hora];
+    var nombreDia = dia.label.split(',')[0];
+    var texto = slot ? 'Reservar el ' + nombreDia + ' a las ' + slot.label : 'Elige día y hora';
+    var cols = Math.min(estado.dias.length, 5);
+    pinta(cabeceraCal() +
+      '<div class="ox-dias" role="group" aria-label="Día" style="grid-template-columns:repeat(' + cols + ',minmax(0,1fr))">' + chipsDias + '</div><div class="cal-slots" role="group" aria-label="Hora">' + chipsHoras + '</div>' +
+      '<p class="ox-error" data-error' + (estado.error ? '' : ' hidden') + '>' + esc(estado.error) + '</p>' +
+      '<div class="dp-acciones"><button type="button" class="btn btn-oscuro" data-reservar' + (slot ? '' : ' disabled') + '>' + esc(texto) + '</button></div>' +
+      '<p class="dp-ayuda ox-p" style="font-size:13px;margin:0">Te llega la invitación al email con el enlace de Meet, y un WhatsApp mío para confirmar.</p></div>', enfocar);
+    root.querySelectorAll('.ox-dia').forEach(function (b) { b.addEventListener('click', function () { estado.dia = +b.getAttribute('data-d'); estado.hora = null; estado.error = ''; pintaCalendario(); }); });
+    root.querySelectorAll('.cal-slot').forEach(function (b) { b.addEventListener('click', function () { estado.hora = +b.getAttribute('data-h'); estado.error = ''; pintaCalendario(); }); });
+    var btn = root.querySelector('[data-reservar]');
+    btn.addEventListener('click', function () {
+      if (!slot) return;
+      btn.disabled = true; btn.textContent = 'Reservando…';
+      fetch('/api/book', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload({ start: slot.iso })) })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, status: r.status, j: j }; }); })
+        .then(function (res) {
+          if (!res.ok) {
+            estado.error = (res.j && res.j.error) || 'No se ha podido reservar. Inténtalo de nuevo.';
+            if (res.status === 409) { var e = estado.error; prepararCalendario(); estado.error = e; pintaCalendario(); return; }
+            pintaCalendario(); return;
+          }
+          var t = res.j.cuando || (dia.label + ', ' + slot.label);
+          estado.cuando = t.charAt(0).toUpperCase() + t.slice(1);
+          estado.meet = res.j.meet || '';
+          estado.i = 'reservado';
+          render(true);
+        })
+        .catch(function () { estado.error = 'No se ha podido reservar. Inténtalo de nuevo.'; pintaCalendario(); });
     });
   }
 
