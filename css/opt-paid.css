@@ -1,0 +1,14 @@
+/* Landing de anuncios (el-desayuno-opt-paid): bloque «para quién es», copiado de optin.css. */
+.ox-encaje{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.ox-lado{display:flex;flex-direction:column;gap:18px;padding:32px;border-radius:24px;box-shadow:inset 0 0 0 1px #30150E26}
+.ox-lado-si{background:var(--fondo);box-shadow:0 14px 34px #30150E14,inset 0 0 0 1px #30150E14}
+.ox-icono{display:grid;place-items:center;width:44px;height:44px;border-radius:999px;background:var(--acento);color:var(--granate)}
+.ox-lado-no .ox-icono{background:#30150E14;color:var(--cacao-suave)}
+.ox-icono svg{width:18px;height:18px}
+.ox-lado h3{margin:0;font-size:24px;font-weight:600;letter-spacing:-0.02em}
+.ox-lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:1.5;color:var(--cacao-suave)}
+.ox-lista li{display:flex;gap:10px;align-items:flex-start}
+.ox-lista svg{flex:none;width:18px;height:18px;margin-top:2px;padding:3px;border-radius:999px;background:var(--acento);color:var(--granate)}
+.ox-lado-no .ox-lista svg{background:#30150E14;color:var(--cacao-suave)}
+.op-cabecera{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:80px}
+.op-pie{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;font-size:14px;padding:28px 0 36px}
