@@ -1,0 +1,27 @@
+# Vista previa: cada push a una rama que no sea main se publica en una URL
+# de prueba de Vercel (no toca mrspinkagency.com). La URL sale en el log.
+name: Vista previa en Vercel
+
+on:
+  push:
+    branches-ignore: [main]
+
+env:
+  VERCEL_ORG_ID: team_8Zw9CO07PFeEiqA57JEkfgBQ
+  VERCEL_PROJECT_ID: prj_pD1zOWQdOhOg3QfoMkceD5rmdt8G
+
+jobs:
+  vista-previa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Publicar vista previa
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          URL=$(npx --yes vercel@latest deploy --yes --token "$VERCEL_TOKEN")
+          echo "URL de la vista previa: $URL"
+          echo "### Vista previa: $URL" >> "$GITHUB_STEP_SUMMARY"
