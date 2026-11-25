@@ -40,6 +40,30 @@ async function getAccessToken() {
   return (await r.json()).access_token;
 }
 
+// Google no avisa a la organizadora de los eventos que crea la API en su propio calendario,
+// así que mandamos un email a Alba con Resend (las mismas claves que /api/lead).
+function escH(t) { return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+async function avisarAlba(r) {
+  const key = process.env.RESEND_API_KEY, to = process.env.LEAD_TO_EMAIL;
+  if (!key || !to) return;
+  const from = process.env.LEAD_FROM_EMAIL || 'Mrs. Pink Agency <onboarding@resend.dev>';
+  const html = '<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:560px;margin:0 auto;color:#30150E">' +
+    '<p style="font-size:13px;color:#EEABC5;font-weight:600;letter-spacing:.04em;margin:0 0 4px">MRS. PINK AGENCY</p>' +
+    '<h2 style="font-size:22px;color:#530F0E;margin:0 0 6px">Nueva reserva de El Desayuno</h2>' +
+    '<p style="font-size:17px;margin:0 0 16px"><strong>' + escH(r.cuando) + '</strong></p>' +
+    (r.meet ? '<p style="margin:0 0 8px">Meet: <a href="' + escH(r.meet) + '">' + escH(r.meet) + '</a></p>' : '') +
+    (r.htmlLink ? '<p style="margin:0 0 16px"><a href="' + escH(r.htmlLink) + '">Ver en Google Calendar</a></p>' : '') +
+    '<pre style="font-family:inherit;white-space:pre-wrap;font-size:15px;line-height:1.5;margin:0;border-top:1px solid #30150E20;padding-top:12px">' + escH(r.descripcion) + '</pre></div>';
+  try {
+    const x = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ from, to, reply_to: r.email, subject: 'Nueva reserva · ' + r.cuando + ' · ' + r.nombre, html }),
+    });
+    if (!x.ok) console.error('aviso reserva', x.status, await x.text());
+  } catch (e) { console.error('aviso reserva', e); }
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') { res.status(405).json({ error: 'Method not allowed' }); return; }
   const d = (req.body && typeof req.body === 'object') ? req.body : {};
@@ -106,6 +130,7 @@ export default async function handler(req, res) {
     if (!evRes.ok) { const t = await evRes.text(); console.error('event error', evRes.status, t); res.status(502).json({ error: M.crear }); return; }
     const ev = await evRes.json();
     const fechaLabel = new Intl.DateTimeFormat(en ? 'en-GB' : 'es-ES', { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }).format(start);
+    await avisarAlba({ titulo: body.summary, cuando: fechaLabel, descripcion: body.description, meet: ev.hangoutLink, htmlLink: ev.htmlLink, email, nombre });
     res.status(200).json({ ok: true, meet: ev.hangoutLink || null, htmlLink: ev.htmlLink || null, cuando: fechaLabel });
   } catch (e) {
     console.error(e);
