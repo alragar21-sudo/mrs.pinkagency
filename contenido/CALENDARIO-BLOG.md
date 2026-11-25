@@ -6,7 +6,7 @@ La tarea programada coge el **primer tema sin marcar**, escribe el artículo y l
 - [x] Qué es un asistente de WhatsApp con IA y cuándo le compensa a un negocio · 2026-11-18
 - [x] Plan de marketing para una pyme: qué tiene que tener (y qué sobra) · 2026-11-20
 - [x] Por qué tu landing no convierte: 7 fallos que vemos cada semana · 2026-11-23
-- [ ] Coste por lead vs. coste por cliente: el número que de verdad importa
+- [x] Coste por lead vs. coste por cliente: el número que de verdad importa · 2026-11-25
 - [ ] Automatizar el seguimiento de clientes sin perder el trato cercano
 - [ ] Meta Ads o Google Ads: cuál elegir según tu negocio
 - [ ] Qué es un funnel de captación, explicado con un ejemplo real
