@@ -10,6 +10,7 @@ Lee `docs/guia-de-marca.md`. Resumen de lo que no se negocia:
 - **Tipografía:** Plus Jakarta Sans para todo. Cedarville Cursive solo para una palabra por titular (clase `.mano`) y para los nombres de los servicios.
 - **Sin cara:** no se usan fotos de Alba, salvo en Sobre Mrs. Pink, rediseñada el 25 nov 2026 (retrato en blanco y negro con grano elegido por Alba, `img/sobre/retrato.webp`; estilos en `css/sobre.css`). La confianza la dan la voz, la firma, las cifras y El Desayuno.
 - **Tono:** de tú, frases cortas, sin jerga. Guiños a *Reservoir Dogs* (Señor Rosa, propina, golpe, botín), como mucho uno por pieza, y nunca imágenes de películas reales.
+- **Sin «CRM»:** en los textos se dice «software de gestión de clientes» (EN: «customer management software»), decidido por Alba el 25 nov 2026. Los nombres de archivo `img/crm/` se quedan.
 - **Nombre:** siempre "Mrs. Pink Agency" (en diálogos y la ficha, "Mrs. Pink" es el personaje). No se menciona ninguna ciudad.
 
 ## Estructura

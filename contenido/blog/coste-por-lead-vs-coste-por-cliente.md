@@ -47,7 +47,7 @@ Esto suele pasar con formularios muy cortos dentro de la propia red social, con 
 
 El coste por lead te lo da la plataforma. El coste por cliente lo tienes que montar tú, porque la plataforma no sabe quién te ha acabado pagando. Para eso necesitas tres cosas:
 
-1. **Saber de dónde viene cada contacto.** Que en tu formulario, tu CRM o tu hoja de cálculo quede apuntado si llegó por Meta, por Google, por la web o por recomendación.
+1. **Saber de dónde viene cada contacto.** Que en tu formulario, tu software de gestión de clientes o tu hoja de cálculo quede apuntado si llegó por Meta, por Google, por la web o por recomendación.
 2. **Apuntar qué pasa con cada uno.** Contactado, propuesta enviada, cliente, descartado. No hace falta un sistema complicado, pero sí hacerlo siempre.
 3. **Cruzar los datos una vez al mes.** Cuánto has gastado en cada canal y cuántos clientes ha traído cada uno.
 
@@ -90,6 +90,6 @@ El Señor Rosa era el único del grupo que se preocupaba por llegar con el botí
 
 El coste por lead te dice cuánto pagas por un contacto. El coste por cliente te dice cuánto pagas por una venta. El primero es útil para vigilar las campañas día a día. El segundo es el que decide si tus anuncios te hacen ganar dinero.
 
-Si no sabes cuál es tu coste por cliente, ese es el primer número que tienes que conseguir. Es justo lo que montamos en [Los Diamantes](/servicios): CRM, seguimiento y un panel que entiendes en dos minutos.
+Si no sabes cuál es tu coste por cliente, ese es el primer número que tienes que conseguir. Es justo lo que montamos en [Los Diamantes](/servicios): software de gestión de clientes, seguimiento y un panel que entiendes en dos minutos.
 
 ¿Quieres que lo miremos juntas? En El Desayuno revisamos tus anuncios, tu web y tus datos en 30 minutos, y te llevas tres mejoras por escrito, nos contrates o no.

@@ -10,7 +10,7 @@ La tarea programada coge el **primer tema sin marcar**, escribe el artículo y l
 - [ ] Automatizar el seguimiento de clientes sin perder el trato cercano
 - [ ] Meta Ads o Google Ads: cuál elegir según tu negocio
 - [ ] Qué es un funnel de captación, explicado con un ejemplo real
-- [ ] CRM a medida o herramienta estándar: cómo decidir
+- [ ] Software de gestión de clientes a medida o herramienta estándar: cómo decidir
 - [ ] Cuánto invertir en publicidad online al empezar
 - [ ] Creatividades que funcionan en anuncios: lo que hemos aprendido
 - [ ] Cómo responder a tiempo a todos tus clientes sin vivir pegada al móvil

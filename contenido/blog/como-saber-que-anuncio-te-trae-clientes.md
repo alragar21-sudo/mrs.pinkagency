@@ -35,7 +35,7 @@ Así, cuando alguien rellena tu formulario, sabes exactamente qué anuncio lo tr
 
 Saber el origen en la analítica está bien. Tenerlo **en la ficha de cada contacto** es lo que cambia el juego.
 
-Cuando alguien rellena un formulario o te escribe por WhatsApp, su origen tiene que viajar con él: a tu CRM, a tu hoja de clientes o a donde gestiones las ventas. Si dentro de tres semanas esa persona compra, podrás decir: «Este cliente vino del carrusel de precios de Meta».
+Cuando alguien rellena un formulario o te escribe por WhatsApp, su origen tiene que viajar con él: a tu software de gestión de clientes, a tu hoja de clientes o a donde gestiones las ventas. Si dentro de tres semanas esa persona compra, podrás decir: «Este cliente vino del carrusel de precios de Meta».
 
 Si hoy apuntas los contactos a mano, empieza por añadir una columna «origen». Es poco glamuroso, pero funciona.
 
@@ -64,7 +64,7 @@ Cabeza fría. Primero los datos, después las opiniones.
 ## Los errores que más vemos
 
 - **Mirar solo los últimos siete días.** Hay ventas que tardan semanas. Dale a cada anuncio un margen acorde a tu ciclo de venta.
-- **Fiarse solo del panel de Meta o Google.** Cada plataforma tiende a atribuirse la venta. Tu CRM es el árbitro.
+- **Fiarse solo del panel de Meta o Google.** Cada plataforma tiende a atribuirse la venta. Tu software de gestión de clientes es el árbitro.
 - **Cambiar cinco cosas a la vez.** Si cambias el anuncio, la página y el público el mismo día, no sabrás qué funcionó.
 - **No medir WhatsApp.** Si muchos clientes te escriben por WhatsApp, ese canal también tiene que guardar de qué anuncio vienen.
 

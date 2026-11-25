@@ -1,9 +1,11 @@
 # Mrs. Pink Agency
 
-**Marketing, CRM y datos.**
+**Marketing, software de gestión de clientes y datos.**
+
+> En los textos no usamos la palabra «CRM»: en español es «software de gestión de clientes» y en inglés «customer management software» (decidido por Alba, 25 nov 2026).
 *Cabeza fría. Marcas que arden.*
 
-Mrs. Pink Agency es una agencia de marketing digital fundada por Alba. Lleva marcas de principio a fin: estrategia, publicidad, CRM y datos. Su forma de trabajar es la del Señor Rosa de *Reservoir Dogs*, el único profesional del grupo, el que no pierde los nervios y el que pone a salvo el botín, pero con algo que él nunca tuvo: la propina.
+Mrs. Pink Agency es una agencia de marketing digital fundada por Alba. Lleva marcas de principio a fin: estrategia, publicidad, software de gestión de clientes y datos. Su forma de trabajar es la del Señor Rosa de *Reservoir Dogs*, el único profesional del grupo, el que no pierde los nervios y el que pone a salvo el botín, pero con algo que él nunca tuvo: la propina.
 
 Este documento es la guía para construir todo lo que lleve la marca: web, landings, redes, propuestas, firmas de email y lo que venga.
 
@@ -31,9 +33,9 @@ Tres servicios, presentados como los tres actos de una peli de atracos (es una s
 | --- | --- | --- | --- |
 | I | **El Plan** | Auditoría, plan de crecimiento y funnel de captación | Sabemos a dónde vamos antes de salir. |
 | II | **El Golpe** | Paid media, landings y CRO, creatividades, SEO y contenidos | Campañas que se miden en clientes, no en likes. |
-| III | **Los Diamantes** | CRM y email, automatizaciones, analítica y cuadro de mando | Clientes que vuelven y un panel que entiendes en dos minutos. |
+| III | **Los Diamantes** | Software de gestión de clientes y email, automatizaciones, analítica y cuadro de mando | Clientes que vuelven y un panel que entiendes en dos minutos. |
 
-Debajo del nombre de cada servicio va siempre su categoría real (Estrategia, Publicidad, CRM y datos), para que nadie se quede sin entenderlo.
+Debajo del nombre de cada servicio va siempre su categoría real (Estrategia, Publicidad, Software de gestión de clientes y datos), para que nadie se quede sin entenderlo.
 
 ### La puerta de entrada: El Desayuno
 
@@ -53,7 +55,7 @@ Mrs. Pink Agency es **descarada, profesional, cinéfila y clara**.
 | Cálida y cercana, de tú | Cursi |
 | Elegante y con aire | Recargada, tienda de ropa ni marca de belleza |
 
-**La prueba de las tres frases.** Cualquier titular o nombre nuevo tiene que sonar bien en: "Hola, te llamo de Mrs. Pink Agency", "Mrs. Pink Agency · Marketing, CRM y datos" y "Hemos contratado a Mrs. Pink Agency para las campañas".
+**La prueba de las tres frases.** Cualquier titular o nombre nuevo tiene que sonar bien en: "Hola, te llamo de Mrs. Pink Agency", "Mrs. Pink Agency · Marketing, software de gestión de clientes y datos" y "Hemos contratado a Mrs. Pink Agency para las campañas".
 
 ### Sin cara, con voz
 

@@ -68,7 +68,7 @@ Un asistente que funciona no se instala en una tarde. Estos son los pasos que no
 1. **Recoger lo que ya contestas.** Repasamos conversaciones reales para saber qué pregunta tu cliente y cómo le respondes.
 2. **Escribir con tu tono.** Si hablas de tú y con humor, el asistente también. Si eres más formal, igual.
 3. **Definir cuándo pasa la conversación a una persona.** Es la parte más importante y la que más se olvida.
-4. **Conectarlo con tu agenda y tu CRM**, para que cada contacto quede guardado con su origen. Así sabrás también qué anuncio trajo cada conversación, como explicamos en [cómo saber qué anuncio te trae clientes](/blog/como-saber-que-anuncio-te-trae-clientes).
+4. **Conectarlo con tu agenda y tu software de gestión de clientes**, para que cada contacto quede guardado con su origen. Así sabrás también qué anuncio trajo cada conversación, como explicamos en [cómo saber qué anuncio te trae clientes](/blog/como-saber-que-anuncio-te-trae-clientes).
 5. **Probar antes de abrirlo al público** y revisar las primeras semanas para afinar respuestas.
 
 ## Lo que se mide
