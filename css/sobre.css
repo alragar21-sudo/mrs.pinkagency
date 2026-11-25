@@ -78,6 +78,7 @@
   .s-wrap{padding:0 16px}
   .s-5-7,.s-7-5,.s-6-6{grid-template-columns:1fr}
   .s-retrato{max-width:320px}
+  .s-intro{order:-1}
   .s-retrato .sello{right:-12px;top:-28px}
   .s-damero{height:auto;grid-template-rows:none;grid-template-columns:1fr}
   .s-damero img{aspect-ratio:4/3;height:auto}
