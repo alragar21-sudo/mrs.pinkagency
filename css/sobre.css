@@ -1,0 +1,98 @@
+/* Sobre Mrs. Pink, versión 2 (nov 2026): cuatro bloques que caben en un portátil de 13". Solo la usan sobre-mi.html y en/about.html. */
+
+.s-bloque-pag{min-height:100svh;display:flex;align-items:center;padding:72px 0;box-sizing:border-box}
+.s-bloque-pag>.s-wrap{width:100%}
+.s-bloque-pag.s-final{min-height:0;padding:clamp(88px,12vh,128px) 0}
+.s-wrap{max-width:1120px;margin:0 auto;padding:0 48px;box-sizing:border-box}
+.s-cols{display:grid;gap:clamp(32px,4.5vw,64px);align-items:center}
+.s-5-7{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.s-7-5{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.s-6-6{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.s-titulo{font-size:clamp(34px,3.6vw,52px);font-weight:400;letter-spacing:-0.035em;line-height:1.08;margin:0}
+.s-texto{font-size:clamp(16px,1.25vw,18px);line-height:1.6;margin:0;max-width:36em}
+
+/* Lista numerada (01) (02) */
+.s-lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(14px,2vh,22px);counter-reset:s}
+.s-lista li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;font-size:clamp(15px,1.1vw,16px);line-height:1.6}
+.s-lista li::before{content:"(" counter(s, decimal-leading-zero) ")";counter-increment:s;color:var(--cacao-suave);font-size:13px;padding-top:3px;font-variant-numeric:tabular-nums}
+.oscuro .s-lista li::before{color:var(--acento)}
+.s-lista b{display:block;font-size:clamp(19px,1.6vw,22px);font-weight:400;letter-spacing:-0.02em;line-height:1.25;margin-bottom:4px}
+
+/* 1. Presentación */
+.s-retrato{position:relative;margin:0;justify-self:center;width:100%;max-width:calc(70vh * 0.8)}
+.s-retrato img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;padding:8px;background:var(--fondo);box-shadow:0 30px 60px #1E080766;box-sizing:border-box}
+.s-retrato .sello{position:absolute;right:-40px;top:-36px;transform:rotate(8deg);z-index:2}
+.s-intro{display:flex;flex-direction:column;gap:24px}
+.s-intro h1{font-size:clamp(48px,6vw,88px);font-weight:400;letter-spacing:-0.045em;line-height:1;margin:0}
+.s-intro h1 .mano{color:var(--acento)}
+.s-cifras{display:flex;flex-wrap:wrap;gap:12px 32px;margin:0;padding:0;list-style:none}
+.s-cifras li{font-size:15px;opacity:.85}
+.s-cifras strong{display:block;color:var(--acento);font-size:clamp(26px,2.4vw,34px);font-weight:500;letter-spacing:-0.03em;line-height:1.1;opacity:1}
+
+/* 2. Cómo trabajo + damero */
+.s-trabajo-txt{display:flex;flex-direction:column;gap:28px}
+.s-trabajo-txt .mano{color:var(--granate)}
+.s-damero{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,minmax(0,1fr));height:min(600px,74vh);border-radius:18px;overflow:hidden}
+.s-damero img{width:100%;height:100%;object-fit:cover;display:block;min-height:0}
+.s-celda{background:var(--granate);color:var(--fondo);padding:clamp(16px,2vw,26px);display:flex;flex-direction:column;justify-content:center;gap:4px;text-decoration:none;min-height:0;transition:background .2s}
+.s-celda:hover{background:var(--granate-hondo)}
+.s-celda h3{margin:0;font-size:clamp(19px,1.7vw,23px);font-weight:400;letter-spacing:-0.02em;line-height:1.2}
+.s-celda h3 .mano{color:var(--acento)}
+.s-celda .cat{font-size:12.5px;font-weight:600;color:var(--acento);margin:0}
+.s-celda p{margin:4px 0 0;font-size:clamp(13px,1vw,14.5px);line-height:1.45;opacity:.85}
+.s-marcas{display:flex;align-items:center;gap:24px;margin-top:clamp(28px,4vh,44px);padding-top:18px;border-top:1px solid var(--linea)}
+.s-marcas-label{flex:none;font-size:14px;font-weight:600;color:var(--cacao-suave);margin:0}
+.s-marcas .carrusel{flex:1;min-width:0}
+.s-marcas .carrusel-pista{padding:4px 0}
+.s-marcas .carrusel-pista a,.s-marcas .carrusel-pista span{font-size:clamp(18px,1.6vw,22px);color:var(--cacao)}
+.s-marcas .carrusel-pista a:hover{color:var(--granate)}
+.s-marcas .carrusel-pista i{margin:0 22px;background:var(--granate)}
+
+/* 3. Ficha y reglas */
+.s-ficha-col{display:flex;justify-content:center}
+.s-ficha-col .ficha{background:var(--fondo);color:var(--cacao);max-width:400px;width:100%;padding:30px 32px 26px}
+.s-ficha-col .ficha>p:first-child{color:var(--granate)!important}
+.s-ficha-col .ficha dt{color:var(--granate)}
+.s-ficha-col .ficha dt,.s-ficha-col .ficha dd{border-top-color:var(--linea);padding:10px 0}
+.s-ficha-col .ficha .suave{color:var(--cacao-suave);opacity:1}
+.s-reglas{display:flex;flex-direction:column;gap:32px}
+.s-reglas .mano{color:var(--acento)}
+.s-reglas .s-lista span{opacity:.85}
+.s-reglas .s-lista b{opacity:1}
+
+/* 4. El color y el cierre */
+.s-nombre{display:flex;flex-direction:column;gap:22px}
+.s-nombre .mano{color:var(--granate)}
+.s-cafe{overflow:hidden;background:var(--granate);color:var(--fondo);border-radius:28px;padding:clamp(32px,3.5vw,48px);display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+.s-cafe h3{margin:0;font-size:clamp(28px,2.8vw,40px);font-weight:400;letter-spacing:-0.03em;line-height:1.1}
+.s-cafe .mano{color:var(--acento)}
+.s-cafe p{margin:0;font-size:16px;line-height:1.6;opacity:.85}
+
+@media (max-height:760px) and (min-width:861px){
+  .s-bloque-pag{padding:48px 0}
+  .s-intro{gap:18px}
+  .s-trabajo-txt{gap:20px}
+}
+@media (max-width:860px){
+  .s-bloque-pag{min-height:0;padding:64px 0}
+  .s-wrap{padding:0 16px}
+  .s-5-7,.s-7-5,.s-6-6{grid-template-columns:1fr}
+  .s-retrato{max-width:320px}
+  .s-intro{order:-1}
+  .s-retrato .sello{right:-12px;top:-28px}
+  .s-damero{height:auto;grid-template-rows:none;grid-template-columns:1fr}
+  .s-damero img{aspect-ratio:4/3;height:auto}
+  .s-damero>:nth-child(1){order:1}.s-damero>:nth-child(2){order:2}.s-damero>:nth-child(3){order:4}.s-damero>:nth-child(4){order:3}.s-damero>:nth-child(5){order:5}.s-damero>:nth-child(6){order:6}
+  .s-celda{padding:24px 22px}
+  .s-marcas{flex-direction:column;align-items:flex-start;gap:8px}
+  .s-marcas .carrusel{width:100%}
+}
+/* Servicios del damero: palabra manuscrita más grande y legible */
+.s-celda h3 .mano{font-size:1.4em;line-height:.9}
+/* Bloque 3 (v2.1): solo las reglas, centradas y en tres columnas */
+.s-bloque-reglas{min-height:0;padding:clamp(88px,13vh,136px) 0}
+.s-bloque-reglas .s-reglas{align-items:center;text-align:center;gap:clamp(36px,6vh,56px)}
+.s-reglas-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3.5vw,48px);text-align:left;width:100%}
+.s-reglas-cols li{grid-template-columns:1fr;gap:10px;align-content:start;padding-top:22px;border-top:1px solid var(--linea-clara)}
+.s-reglas-cols li::before{padding-top:0}
+@media (max-width:860px){.s-reglas-cols{grid-template-columns:1fr;gap:28px}}
