@@ -12,3 +12,13 @@
 .ox-lado-no .ox-lista svg{background:#30150E14;color:var(--cacao-suave)}
 .op-cabecera{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:80px}
 .op-pie{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;font-size:14px;padding:28px 0 36px}
+.op-propina{margin:0;font-size:18px;font-weight:600;color:var(--acento)}
+.op-cifras{list-style:none;margin:6px 0 0;padding:16px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border-top:1px solid #F6F5EC33;font-size:14px;line-height:1.35;max-width:520px}
+.op-cifras strong{display:block;font-size:clamp(30px,3vw,42px);font-weight:300;letter-spacing:-0.05em;line-height:1.05;color:var(--acento)}
+.op-garantia{margin:4px 0 0;display:flex;align-items:center;gap:10px;font-size:16px}
+.op-garantia svg{flex:none;width:22px;height:22px;padding:4px;border-radius:999px;background:var(--acento);color:var(--granate)}
+.op-suena{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.op-dolores{gap:0;font-size:18px;color:var(--cacao)}
+.op-dolores li{padding:16px 0;border-top:1px solid var(--linea)}
+.op-dolores li:last-child{border-bottom:1px solid var(--linea)}
+@media (max-width:860px){.op-suena{grid-template-columns:1fr;gap:28px}.op-cifras{max-width:none}}
